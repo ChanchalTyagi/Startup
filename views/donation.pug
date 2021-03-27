@@ -1,0 +1,41 @@
+extends base.pug
+block scripts
+    script(src='../static/javascripts/index.js' async)
+    script(src='../static/javascripts/rasp.js' async)
+
+block style
+    style
+        include ../static/stylesheets/style.css
+        include ../static/stylesheets/styleDonation.css
+block content
+    div.don-items 
+        h1 Products For Donation 
+        div.don-row
+            img(src="../static/images/cooler.jpg")
+            div.info-don-per 
+                h2 Name of person   
+                h2 Year 
+                h2 Contact Number
+            h2(class="descript") Description  
+        div.don-row
+            img(src="images/iron.jpg")
+            div.info-don-per 
+                h2 Name of person   
+                h2 Year 
+                h2 Contact Number
+            h2(class="descript") Description  
+        div.don-row
+            img(src="images/bicycle.jpg")
+            div.info-don-per 
+                h2 Name of person   
+                h2 Year 
+                h2 Contact Number
+            h2(class="descript") Description   
+        div.don-row
+            img(src="images/kettle.png")
+            div.info-don-per 
+                h2 Name of person   
+                h2 Year 
+                h2 Contact Number
+            h2(class="descript") Description  
+      

@@ -1,0 +1,44 @@
+doctype html
+html
+  head
+    title You Tell We Sell
+    link(rel="icon" href="../static/images/logo1.png" type="image/png")
+    block scripts
+    block style
+  body 
+    nav.navbar 
+        div.space
+        div.first  
+            img(src="../static/images/logo1.png")
+        div.middle 
+            form(action="/api/search",method="post")
+                div.full-form 
+                    div.full-input 
+                        input(type="text",name="search", id="search",placeholder="Search items here")
+                    button(class="btn-search")
+                        img(src="../static/images/search.png")  
+        div.nav-list 
+            button(class="login-btn" onclick="window.location.href='/api/login'")
+                | Login
+            div(class="notification",onclick="document.getElementById('id01').style.display='block'")
+                img(src="https://img.icons8.com/material-rounded/24/000000/appointment-reminders.png")
+                span(class="notify") 0      
+            
+            div(class="dropdown")
+                button(class="login-btn drop-btn") Start Selling
+                div(class="dropdown-content")
+                    a(href="/api/sell") Sell?
+                    a(href="/api/donate") Donate?
+ 
+        div.space          
+    div#id01.modal 
+        div.cart-modal 
+            span(onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal") &times
+            h1 My Cart        
+            div.cart-items                      
+            button(class="btn cancel-cart" ,id="cart-cancel") Cancel Cart                 
+    block content
+    footer#footer
+       |   Copyright © 2020 YouTellWeSell.com | All rights reserved
+
+    

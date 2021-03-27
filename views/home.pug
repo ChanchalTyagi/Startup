@@ -1,0 +1,110 @@
+extends base.pug
+block scripts
+    script(src='../static/javascripts/rasp.js' async)
+    script(src="../static/javascripts/cart.js" defer="defer" async)     
+    //- script(src="../static/javascripts/client/client.js" async)  
+block style
+    style
+        include ../static/stylesheets/style.css
+        include ../static/stylesheets/responsive.css
+
+block content
+    section.background.firstSection             
+        div.items-nav
+            ul.items-list 
+                li #[a(href="/api/") All Categories]  
+                li #[a(href="/api/cooler") Cooler]
+                li #[a(href="/api/cycle") Bicycles]
+                li #[a(href="/api/boooks") Books]  
+                li #[a(href="/api/iron") Iron]
+                li #[a(href="/api/kettle") Kettle]  
+                li #[a(href="/api/other") Other] 
+
+        div.trend
+            div(class="slideshow") 
+                div(class="upperslides fade1")
+                    img(src='../static/images/coolerb.jpg')
+                div(class="upperslides fade1")
+                    img(src='../static/images/bcycle1.jpg')  
+                div(class="upperslides fade1")
+                    img(src='../static/images/book.jpg')                       
+
+        //- div.trend
+        //-     img(src='https://statics.olx.in/external/base/img/hero-bg-in.jpg') 
+        div.main-cards  
+            h1 Fresh Recommendations          
+            div.cards     
+                each n,i in data
+                    div.box-main 
+                        div.product-image
+                            a(href='/api/image/'+data[i].current_id)
+                                img(src='../static/images/'+data[i].image,class="product-image-img")
+                        div.heading     
+                            span.heading-h1 &#8377 #{data[i].price}
+                            span.heading-p1 #{data[i].name}
+                            span.heading-p2 #{data[i].old} years old      
+                        span.fav 
+                            input(type="checkbox" name="fav-btn" id="x" class="fav-btn" value=" ")
+                            label(for='x')  
+
+        div.trending 
+            div.recom 
+                h1 Products For Donation 
+            div(class="slideshow-container") 
+                each n,i in data
+                    div(class="mySlides fade")
+                        img(src='../static/images/'+data[i].image)   
+                                              
+    section#contactWithUs        
+        div.aboutus 
+            h1 About Us
+            ul
+                li #[a(href="/api/about") About Us]  
+                li #[a(href="/api/contact") Contact Us] 
+                li #[a(href="/api/services") Services]  
+        div.followus
+            h1 Follow Us
+            div.logo-all
+                div.each-logo  
+                    a(href='/api/email')
+                        img(src="https://img.icons8.com/ios-filled/50/000000/email-open.png")
+                div.each-logo
+                    a(href='/api/facebook') 
+                        img(src="https://img.icons8.com/fluent/48/000000/facebook-new.png")
+                    
+                div.each-logo
+                    a(href='/api/instagram')
+                        img(src="https://img.icons8.com/color/48/000000/instagram-new.png")
+                div.each-logo
+                    a(href="https://www.linkedin.com/in/chanchal-tyagi-b2463b1b2/" target = "_parent")
+                        img(src="https://img.icons8.com/fluent/48/000000/linkedin.png")  
+   
+    script.  
+       var slideIndex = 0,index=0;
+       showSlides();
+       showSlide();
+       function showSlides() {
+       var i;
+       var slides = document.getElementsByClassName("mySlides");
+       for (i = 0; i < slides.length; i++) { 
+       slides[i].style.display = "none";
+       }
+       slideIndex++;
+       if (slideIndex > slides.length) {slideIndex = 1}  
+       slides[slideIndex-1].style.display = "block";
+       setTimeout(showSlides, 2000); 
+       }
+
+       function showSlide() {
+       var j;
+       var slide = document.getElementsByClassName("upperslides");
+       for (j = 0; j < slide.length; j++) { 
+       slide[j].style.display = "none";
+       }
+       index++;
+       if (index > slide.length) {index = 1}  
+       slide[index-1].style.display = "block";
+       setTimeout(showSlide, 3000); 
+       }
+       
+

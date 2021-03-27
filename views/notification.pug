@@ -1,0 +1,20 @@
+extends base.pug
+block scripts
+    script(src='../static/javascripts/index.js' async)
+    script(src='../static/javascripts/rasp.js' async)
+    script(src='../static/javascripts/cart.js' defer="defer" async)
+
+block style
+    style
+        include ../static/stylesheets/style.css
+        include ../static/responsive.css
+        include ../static/stylesheets/styleNoti.css
+
+block content
+    div#noti-items 
+        //- div.cart-row
+        //-     img(src="/static/cooler.jpg")
+        //-     div.cart-price 
+        //-         h1 &#8377 Price value
+        //-     div.button-item 
+        //-         button(class="remove") Remove                              

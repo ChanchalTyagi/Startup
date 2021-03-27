@@ -1,0 +1,21 @@
+extends ./base.pug
+
+block scripts
+    script(src='../static/javascripts/index.js')
+    //- script(src='../static/javascripts/rasp.js')
+
+block style
+    style
+        include ../static/stylesheets/style.css
+        include ../static/stylesheets/responsive.css
+
+block content
+    div.profile
+        div.my-photo
+            img(src='../static/images/chanchal_image.jpg')
+        div.my-intro
+            p Name : Chanchal Tyagi 
+            p Branch : Chemical Engineering, 3rd Year
+            p College : Motilal Nehru National Institute Of Technology, Allahabad
+            p Profile : Full Stack Web Developer   
+             

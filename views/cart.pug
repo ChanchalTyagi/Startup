@@ -1,0 +1,24 @@
+extends base.pug
+block scripts
+    script(src='../static/javascripts/index.js' async)
+    script(src='../static/javascripts/rasp.js' async)
+    script(src='../static/javascripts/cart.js' defer="defer" async)
+
+block style
+    style
+        include ../static/stylesheets/style.css
+        include ../static/responsive.css
+        include ../static/stylesheets/styleCart.css
+
+block content
+    div#cart-items 
+        h1 My Cart
+        //- div.cart-row
+        //-     img(src="/static/cooler.jpg")
+        //-     div.cart-price 
+        //-         h1 &#8377 Price value
+        //-     div.button-item 
+        //-         button(class="remove") Remove                              
+        button(class="btn cancel-cart" type="button" id="cart-cancel") Cancel Cart        
+    
+    

@@ -1,0 +1,48 @@
+extends base.pug
+
+block scripts
+    script(src='../static/javascripts/index.js')
+    script(src="https://code.jquery.com/jquery-3.5.1.min.js")
+
+block style
+    style
+        include ../static/stylesheets/style.css
+        include ../static/stylesheets/styleLogin.css
+        include ../static/stylesheets/responsive.css
+
+block content
+    div#msg
+        if(message!==null)
+            h2 #{message}
+    div#login-page 
+        div.form 
+            form(class="register-form",action="/api/SignUp",method="post")
+                input(type="text",placeholder="Enter email",name="email")
+                input(type="password",placeholder="Enter password",name="psw")
+                input(type="password",placeholder="Confirm password",name="pswconfirm")
+                button(type="submit") Register 
+                p(class="message1") Already Registered?
+                    a(href="" id="login") Login here
+            form(class="login-form",action="/api/login",method="post")
+                input(type="text",placeholder="Enter email",name="email")        
+                input(type="password",placeholder="Enter password",name="psw")
+                button(type="submit") Login
+                p(class="message")
+                    a(href="/") Forgot Password
+                p(class="message2") Not registered yet?
+                    a(href="" id="SignUp") Register here
+    script. 
+         $(function(){
+             $('.message1 a').on('click',function(e){
+             $('.register-form').css('display','none');
+             $('.login-form').css('display','inline');
+             e.preventDefault();
+             });
+         });
+         $(function(){
+             $('.message2 a').on('click',function(e){
+             $('.login-form').css('display','none');
+             $('.register-form').css('display','inline');
+             e.preventDefault();
+             });
+         });

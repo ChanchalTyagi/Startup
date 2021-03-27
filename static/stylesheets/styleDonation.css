@@ -1,0 +1,56 @@
+.don-items{
+    width:75%;
+    margin:40px auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+h1{
+    font-size: 34px;
+}
+
+.don-items .don-row{
+    position: relative;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin:20px;
+    height:40%;
+    box-shadow:0px 3px 16px 0px rgba(0,0,0,.11);
+}
+
+.don-row img{
+    position:relative;
+    width:20%;
+    height:20%;
+    margin:20px;
+}
+
+.don-row .info-don-per{
+    display: flex;
+    flex-direction: column;
+    margin-top:20px;
+}
+
+.info-don-per h2{
+    font-size:20px;
+    margin:20px;
+}
+
+.descript{
+    font-size:20px;
+    margin-top:40px;
+}
+
+.don-items::-webkit-scrollbar {
+    display: none;
+}
+
+.don-items{
+  -ms-overflow-style: none; 
+  scrollbar-width: none;  
+}

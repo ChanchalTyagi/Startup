@@ -1,0 +1,16 @@
+extends base.pug
+block scripts
+    script(src='../static/javascripts/index.js' async)
+    script(src='../static/javascripts/rasp.js' async)
+
+block style
+    style
+        include ../static/stylesheets/style.css
+
+block content
+    h1 Email Verification 
+    h3 Kindly Enter OTP 
+        form(action="/api/email-activate",method="post",class="myForm")
+            input(type="text", class="myInput", name="name", placeholder="Enter your name")
+            button(class="btn")
+                | Submit

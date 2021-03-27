@@ -1,0 +1,207 @@
+.container-image{
+    width:100vw;
+    height:100vh;
+    margin:auto;
+    display: flex;
+  }
+  .items-nav{
+    border: 1px solid rgba(0, 47, 52, 0.2);
+  }
+  .container-left{
+    height:70%;
+    width:50%;
+    margin:20px;
+    padding:20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid rgba(0, 47, 52, 0.2);
+    background-color: black;
+  }
+  
+  .slideshow-container {
+    position: relative;
+    width: 100%;
+    height:80%;
+    margin: auto;
+  }
+  
+  .mySlides {
+    position: relative;
+    width:100%;
+    height:100%;
+    display: none;
+  }
+  
+  .mySlides img{
+    position: relative;
+    width:80%;
+    height:95%;
+  }
+  
+  .center{
+    position: relative;
+    width:100%;
+    height:20%;
+    overflow:hidden;
+  }
+  
+  .center h1{
+    color:red;
+  }
+  
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color:white;
+    font-weight: bold;
+    font-size: 25px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  .prev{
+    left:0;
+    border-radius: 3px 0 0 3px;
+  }
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+  
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 20px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+  
+  .dot {
+    cursor: pointer;
+    position: relative;
+    width:10%;
+    height:90%;
+    margin:10px;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  .active, .dot:hover {
+    border-radius:2px solid black;
+  }
+  
+  .container-right h1{
+    font-size: 25px;
+  }
+  
+  .product-desc{
+    width:90%;
+    height:50%;
+    border: 1px solid rgba(0, 47, 52, 0.2);
+    padding:10px;
+  }
+  
+  .product-desc h1,p{
+    padding:5px;
+  }
+  
+  .container-right{
+    position: relative;
+    height:70%;
+    width:40%;
+    margin:20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container-right p{
+    font-size:20px;
+  }
+  .seller-desc{
+    width:90%;
+    height:50%;
+    margin-top:20px;
+    border: 1px solid rgba(0, 47, 52, 0.2);
+    padding:10px;
+    display: flex;
+    flex-direction:column;
+  }
+  
+  .seller-desc .seller-profile{
+    display: flex;
+    width:100%;
+    margin:5px;
+    height:60%;
+  }
+  .seller-profile img{
+    height:55%;
+    width:25%;
+  }
+  
+  .seller-desc .seller-info{
+    position: relative;
+    margin-left:20%;
+  }
+  .seller-desc button{
+    width:100%;
+    color:white;
+    background-color:black;
+  }
+  
+  ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    font-size: 15px;
+  }
+  
+  /* Display list items side by side */
+  ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+  }
+  
+  /* Add a slash symbol (/) before/behind each list item */
+  ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+  }
+  
+  /* Add a color to all links inside the list */
+  ul.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+  }
+  
+  /* Add a color on mouse-over */
+  ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+  }
+  
+  /* Fading animation */
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }

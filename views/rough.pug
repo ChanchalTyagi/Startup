@@ -1,0 +1,108 @@
+
+
+    //- a(href='/api/donation',class="donation") Sell?
+    //-           a(href='/api/donation',class="donation") Donate?
+//- // function checkFileType(file, cb){
+//- //   const filetypes = /jpeg|jpg|png|gif/;
+//- //   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+//- //   const mimetype = filetypes.test(file.mimetype);                               
+//- //   if(mimetype && extname){                 
+//- //     return cb(null,true);
+//- //   } else {               
+//- //     cb('Error: Images Only!');
+//- //   }
+//- // }
+
+//- div.logo  
+//-              img(src="https://img.icons8.com/dusk/64/000000/huawei-logo.png")
+          li #[a(href="/api/") Home]
+          li #[a(href="/api/about") About Us]
+          li #[a(href="/api/services") Services]
+          li #[a(href="/api/contact") Contact Us]
+          div.dropdown  
+              a(href="/api/") Want to Sell?
+              div(class="dropdown-content")
+                  a(href='/api/sell') Sell?
+                  a(href='/api/donate') Donate?
+          li #[a(href="/api/login") Login] 
+          li #[a(href="/api/SignUp") SignUp] 
+nav.navbar.background.h-nav-resp
+       ul.nav-list.v-class-resp 
+          
+          a(href="/api/donation",class="donation")
+              img(src="https://img.icons8.com/ios-filled/50/000000/charity.png")
+          div(class="notification",onclick="document.getElementById('id01').style.display='block'")
+              img(src="https://img.icons8.com/material-rounded/24/000000/appointment-reminders.png")
+              span(class="notify") 0    
+       div.rightNav.v-class-resp  
+          form(action="/api/search",method="post")
+              input(type="text",name="search", id="search",placeholder="Search items here")
+          img(src="https://img.icons8.com/material-rounded/24/000000/search.png")    
+       div.burger
+            div.line
+            div.line
+            div.line
+             div(class="mycart",onclick="document.getElementById('id01').style.display='block'")      
+                img(src="https://img.icons8.com/ios-glyphs/30/000000/mine-cart.png")  
+                span(class="span-cart") 0 
+    block content
+    footer#footer
+       |   Copyright © 2020 YouTellWeSell.com | All rights reserved
+    
+    script.  
+        const data1 = !{jsStringify(data1)};
+        var modal = document.getElementById('id01');
+        window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none";
+        }
+        }   
+        var index = 0;
+        var id;
+        var trendingEach = document.getElementsByClassName('trending-each')[0];
+        change();
+        function change() {
+            trendingEach.innerHTML = "";
+            for (var i = index; i < index + 3; i++) {
+                var images = data1[i].image;
+                var img_id = data1[i].current_id;
+                var cartRowC = `<a href="/image/${img_id}">   
+                        <img src="/static/${images}",class="product-image-img">
+                        </a>`     
+                trendingEach.innerHTML += cartRowC;
+            }
+            if (i > 10) {
+            index = 0;
+            }
+            else
+            index = i;
+            setTimeout(change, 2000);
+       }
+
+div(class="slideshow-container")
+                each n,i in data
+                    div(class="mySlides fade")
+                        div(class="numbertext") #{i+1}
+                        img(src='/static/images/upload_images/'+data[i].image)     
+ 
+                a(class="prev" onclick="plusSlides(-1)") &#10094
+                a(class="next" onclick="plusSlides(1)") &#10095  
+            br   
+            div(style="text-align:center" class="center")  
+                each n,i in data
+                    img(src='/static/images/upload_images/'+data[i].image, class="dot", onclick="currentSlide(#{i+1})")
+
+
+                    div.trending-each
+                each n,i in data1
+                    div.box-main-tren 
+                        a(href='/api/image/'+data1[i].current_id)
+                            img(src='/static/'+data1[i].image,class="product-image-img") 
+
+                            section#sponsorsSection
+        h1 Our Sponsors 
+        div#sponsors 
+            img(src="https://img.icons8.com/color/192/000000/google-logo.png",class="spImage")
+            img(src="https://img.icons8.com/color/192/000000/microsoft.png",class="spImage")
+            img(src="https://img.icons8.com/doodle/192/000000/uber-app.png",class="spImage")
+            img(src="https://img.icons8.com/doodle/192/000000/amazon.png",class="spImage")   

@@ -1,0 +1,26 @@
+extends base.pug
+block scripts
+    script(src='../static/javascripts/index.js' async)
+    script(src='../static/javascripts/rasp.js' async)
+    script(src="../static/javascripts/js/jquery-3.5.1.min.js")
+    script(src="../static/javascripts/js/chat.js" defer)
+    //- script(src="../node_modules/socket.io/client-dist/socket.io.min.js")
+
+block style
+    style
+        include ../static/stylesheets/style.css
+        include ../static/stylesheets/styleChat.css
+
+block content
+    div.container-chat
+        div(class="login" id="login")
+            input(id="login_name" placeholder="Username")
+            input(type="password" id="login_pass" placeholder="Password")
+            button(onClick="login()") Login
+        
+        div(id="after-login" style="display:none")
+            h1(id="me") 
+            div(id="user-list" class="user-list")
+            
+    script.
+        const socket = io({transports: ['websocket']}); 
