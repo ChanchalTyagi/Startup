@@ -7,12 +7,14 @@ module.exports.home=(req, res) => {
       if (err) throw err;
       if (result.length <= 0)
         message = "items not found";
+        else
+         message=" ";
         var sql1="SELECT * FROM `search_table` ORDER BY `currentdate` LIMIT 12";
         db.query(sql1, function (err, results) {
           if (err) throw err;
           if (results.length <= 0)
             message = "items not found"; 
-            res.status(200).render('home.pug', {jsStringify, data:result,data1:results});
+            res.status(200).render('home.pug', {jsStringify, data:result,data1:results,message:message});
         });
     });
   };
@@ -24,7 +26,9 @@ module.exports.home=(req, res) => {
       if (err) throw err;
       if (result.length <= 0)
         message = "items not found!";
-      res.render('home.pug', {jsStringify, data: result });
+      else
+        message=" ";
+      res.render('home.pug', {jsStringify, data: result,message:message });
     });
   };
 
@@ -40,7 +44,9 @@ module.exports.home=(req, res) => {
           if (err) throw err;
           if (results.length <= 0)
             message = "items not found";
-            res.status(200).render('home.pug', {jsStringify, data:result,data1:results});
+            else
+        message=" ";
+            res.status(200).render('home.pug', {jsStringify, data:result,data1:results,message:message});
         });
     });
   };
@@ -57,7 +63,9 @@ module.exports.home=(req, res) => {
           if (err) throw err;
           if (results.length <= 0)
             message = "items not found";
-            res.status(200).render('home.pug', {jsStringify, data:result,data1:results});
+            else
+        message=" ";
+            res.status(200).render('home.pug', {jsStringify, data:result,data1:results,message:message});
         });
     });
   };
@@ -74,7 +82,9 @@ module.exports.home=(req, res) => {
           if (err) throw err;
           if (results.length <= 0)
             message = "items not found";
-            res.status(200).render('home.pug', {jsStringify, data:result,data1:results});
+            else
+        message=" ";
+            res.status(200).render('home.pug', {jsStringify, data:result,data1:results,message:message});
         });
     });
   };
@@ -91,7 +101,9 @@ module.exports.home=(req, res) => {
           if (err) throw err;
           if (results.length <= 0)
             message = "items not found";
-            res.status(200).render('home.pug', {jsStringify, data:result,data1:results});
+            else
+        message=" ";
+            res.status(200).render('home.pug', {jsStringify, data:result,data1:results,message:message});
         });
     });
   };
@@ -108,7 +120,9 @@ module.exports.home=(req, res) => {
           if (err) throw err;
           if (results.length <= 0)
             message = "items not found";
-            res.status(200).render('home.pug', {jsStringify, data:result,data1:results});
+            else
+        message=" ";
+            res.status(200).render('home.pug', {jsStringify, data:result,data1:results,message:message});
         });
     });
   };

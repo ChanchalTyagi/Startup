@@ -23,7 +23,6 @@ module.exports.sign_post=(req,res)=>{
         return res.status(400).render('signUp.pug',{message:'Please provide an email and password'})
       }
       db.query('SELECT email FROM `login-sign` WHERE email=?',[email],async (err,results,fields)=>{
-        res.send(results)
        if(err)
        {
          console.log(err);

@@ -1,0 +1,45 @@
+extends base.pug
+block scripts
+    script(src='../static/javascripts/index.js' async)
+    script(src='../static/javascripts/sign.js' async)
+    script(src='../static/javascripts/cart.js' defer="defer" async)
+
+block style
+    style
+        //- include ../static/stylesheets/style.css
+        include ../static/stylesheets/responsive.css
+        include ../static/stylesheets/styleNN.css
+
+block content
+    #container.container
+        .form-container.sign-up-container
+            form(action='#')
+                h1 Create Account
+                .social-container
+                    a.social(href='#')
+                        i.fab.fa-facebook-f
+                    a.social(href='#')
+                        i.fab.fa-google-plus-g
+                    a.social(href='#')
+                        i.fab.fa-linkedin-in
+                span or use your email for registration
+                input(type='text' placeholder='Name')
+                input(type='email' placeholder='Email')
+                input(type='password' placeholder='Password')
+                button Sign Up
+        .form-container.sign-in-container
+            form(action='#')
+                h1 Sign in
+                .social-container
+                    a.social(href='#')
+                        i.fab.fa-facebook-f
+                    a.social(href='#')
+                        i.fab.fa-google-plus-g
+                    a.social(href='#')
+                        i.fab.fa-linkedin-in
+                span or use your account
+                input(type='email' placeholder='Email')
+                input(type='password' placeholder='Password')
+                a(href='#') Forgot your password?
+                button Sign In
+       

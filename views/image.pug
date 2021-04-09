@@ -7,48 +7,48 @@ block scripts
 block style
     style
         include ../static/stylesheets/style.css
-        include ../static/stylesheets/styleImage.css
-
+        include ../static/stylesheets/styleImage.css 
+        include ../static/stylesheets/responsive.css
 block content  
-    div.items-nav.background.h-nav-resp
-            ul.items-list.nav-list.v-class-resp 
+    div.items-nav
+            ul.items-list
                 li #[a(href="/api/") All Categories]
                 li #[a(href="/api/cooler") Cooler]
                 li #[a(href="/api/cycle") Bicycles]
-                li #[a(href="/api/boooks") Books]
-                li #[a(href="/api/iron") Iron]
+                li #[a(href="/api/boooks") Books] 
+                li #[a(href="/api/iron") Iron] 
                 li #[a(href="/api/kettle") Kettle]  
-                div(class="mycart",onclick="document.getElementById('id01').style.display='block'")
-                    img(src="https://img.icons8.com/material-sharp/24/000000/shopping-cart.png")
-                    span(class="span-cart") 0
-    ul(class="breadcrumb")
-        li #[a(href="/api/") Home]
-        li Image    
+                //- div(class="mycart",onclick="document.getElementById('id01').style.display='block'")
+                //-     img(src="https://img.icons8.com/material-sharp/24/000000/shopping-cart.png")
+                //-     span(class="span-cart") 0
+    ul(class="breadcrumb") 
+        li #[a(href="/api") Home]
+        li #[a(href="/api/image") Image]  
     div.container-image 
         div.container-left 
-            div(class="slideshow-container")
-                each n,i in data
+            div(class="slideshow-container") 
+                each n,i in data 
                     div(class="mySlides fade")
-                        div(class="numbertext") #{i+1}
-                        img(src='images/'+data[i].image)     
+                        div(class="numbertext") #{i+1} 
+                        img(src='/static/images/'+data[i].image)     
  
                 a(class="prev" onclick="plusSlides(-1)") &#10094
                 a(class="next" onclick="plusSlides(1)") &#10095  
             br   
             div(style="text-align:center" class="center")  
                 each n,i in data
-                    img(src='images/'+data[i].image, class="dot", onclick="currentSlide(#{i+1})")
+                    img(src='/static/images/'+data[i].image, class="dot", onclick="currentSlide(#{i+1})")
 
         div.container-right 
             div.product-desc 
-                h1 &#8377 #{data[0].price}
+                h1 &#8377 #{data[0].price} 
                 p #{data[0].old} years old
                 p #{data[0].descript}
                 p #{data[0].currentdate}
             div.seller-desc
-                h1 Seller Description
+                h1 Seller Description 
                 div.seller-profile 
-                    img(src="images/profile.jpg")
+                    img(src="/static/images/jack.jpg") 
                     div.seller-info
                         p #{data[0].name} 
                         p #{data[0].year} year 

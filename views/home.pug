@@ -23,14 +23,15 @@ block content
         div.trend
             div(class="slideshow") 
                 div(class="upperslides fade1")
-                    img(src='../static/images/coolerb.jpg')
+                    img(src='/static/images/coolerb.jpg')
                 div(class="upperslides fade1")
-                    img(src='../static/images/bcycle1.jpg')  
+                    img(src='/static/images/bcycle1.jpg')  
                 div(class="upperslides fade1")
-                    img(src='../static/images/book.jpg')                       
+                    img(src='/static/images/book.jpg')                       
 
         //- div.trend
         //-     img(src='https://statics.olx.in/external/base/img/hero-bg-in.jpg') 
+
         div.main-cards  
             h1 Fresh Recommendations          
             div.cards     
@@ -38,7 +39,7 @@ block content
                     div.box-main 
                         div.product-image
                             a(href='/api/image/'+data[i].current_id)
-                                img(src='../static/images/'+data[i].image,class="product-image-img")
+                                img(src='/static/images/'+data[i].image,class="product-image-img")
                         div.heading     
                             span.heading-h1 &#8377 #{data[i].price}
                             span.heading-p1 #{data[i].name}
@@ -50,10 +51,10 @@ block content
         div.trending 
             div.recom 
                 h1 Products For Donation 
-            div(class="slideshow-container") 
+            div(class="slideshow-cont") 
                 each n,i in data
-                    div(class="mySlides fade")
-                        img(src='../static/images/'+data[i].image)   
+                    div(class="mySlid fad")
+                        img(src='/static/images/'+data[i].image)   
                                               
     section#contactWithUs        
         div.aboutus 
@@ -85,7 +86,7 @@ block content
        showSlide();
        function showSlides() {
        var i;
-       var slides = document.getElementsByClassName("mySlides");
+       var slides = document.getElementsByClassName("mySlid");
        for (i = 0; i < slides.length; i++) { 
        slides[i].style.display = "none";
        }
