@@ -1,0 +1,17 @@
+extends base.pug
+
+block scripts
+    script(src='../static/javascripts/index.js')
+
+block style
+    style
+        include ../static/stylesheets/style.css
+        include ../static/stylesheets/styleContact.css
+
+block content
+    div.container
+        h1 Forgot Password
+        form(action="/api/forgot-password",method="post",class="myForm")
+            input(type="email", class="myInput", name="email", placeholder="Email")
+            button(class="btn")
+                | Submit

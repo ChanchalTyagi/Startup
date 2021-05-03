@@ -1,0 +1,17 @@
+extends base.pug
+
+block scripts
+    script(src='../static/javascripts/index.js')
+
+block style
+    style
+        include ../static/stylesheets/style.css
+        include ../static/stylesheets/styleContact.css
+
+block content
+    div.container
+        h1 Reset Password
+        form(action='/api/resetPassword/'+token,method="post",class="myForm")
+            input(type="password", class="myInput", name="newPass", placeholder="Enter new password")
+            button(class="btn")
+                | Submit

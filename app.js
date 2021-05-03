@@ -7,13 +7,15 @@ const cookieParser=require('cookie-parser');
 const app = express();
 const bodyParser = require("body-parser");
 const jsStringify = require('js-stringify');  
-const webpush=require("web-push");                              
+const webpush=require("web-push");      
+var cors=require('cors');                        
 const port = 8080; 
 var routes=require("./api/routes/index.js"); 
 var db=require("./api/routes/controllers/model.js");  
 app.set('views', path.join(__dirname, 'views'));   
 app.set('view engine', 'pug'); 
 app.use('/static', express.static('static'));
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
@@ -40,12 +42,6 @@ const io        = require('socket.io')(server);
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules', )));
 let clientSocketIds = [];
 let connectedUsers= [];
-// const connection = mysql.createConnection({
-//     host     : 'localhost',
-//     user     : 'chanchal',
-//     password : 'karmayoga',
-//     database : 'testdb'
-// });
 
 app.post('/api/login-chat', (req, res) =>{
     db.query(`SELECT user_name, user_id, user_full_name, user_image from chat_users where user_name="${req.body.username}" AND user_password="${req.body.password}"`, function (error, results, fields) {
