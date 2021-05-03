@@ -5,10 +5,7 @@ const jwt=require('jsonwebtoken');
 const bcrypt=require('bcryptjs');
 var nodemailer = require('nodemailer');
 const cookieParser=require('cookie-parser');                           
-const mailgun = require("mailgun-js");
 const emailValidator = require("email-validator");
-const DOMAIN = 'sandboxbc3c3d3d05794be29b12bdc44a87f655.mailgun.org';
-const mg = mailgun({apiKey:process.env.MAILGUN_APIKEY, domain:DOMAIN});
 dotenv.config({path:'./.env'});
 var db=require("./model.js");
 var transporter = nodemailer.createTransport({
@@ -19,16 +16,20 @@ var transporter = nodemailer.createTransport({
   }
 });
 
+module.exports.login_get=(req,res)=>{
+  return res.render('login.pug');
+}
+
 module.exports.sign_post=(req,res)=>{
     var email=req.body.email;
     var password=req.body.psw;
     var passwordConfirm=req.body.pswconfirm;
       if(!email||!password||!passwordConfirm){
-        return res.redirect('/signup',{message:'Please provide an email and password'});
+        return res.render('login.pug',{message:'Please provide an email and password'});
       }
       if(!emailValidator.validate(email))
       {
-        return res.redirect('/signup',{message:'Invalid email'});
+        return res.render('login.pug',{message:'Invalid email'});
       }
         db.query('SELECT email FROM `users` WHERE email=?',[email],async (err,results,fields)=>{
           if(err)
@@ -36,13 +37,13 @@ module.exports.sign_post=(req,res)=>{
             console.log(err);
           }
           if(results.length>0){
-            return res.json({message:'The email is already in use'})
+            return res.render('login.pug',{message:'The email is already in use'})
           }
           if(password!=passwordConfirm){
-            return res.json({message:'Password doesnt match'})
+            return res.render('login.pug',{message:'Password doesnt match'})
           }
           if(password.length<6)
-          return res.json({message: "Password must be at least 6 characters."})
+          return res.render('login.pug',{message: "Password must be at least 6 characters."})
 
             const token=jwt.sign({email,password},process.env.JWT_SECRET,{
               expiresIn:process.env.JWT_EXPIRES_IN
@@ -62,7 +63,7 @@ module.exports.sign_post=(req,res)=>{
                 console.log('Email sent: ' + info.response);
               }
             });
-            return res.json({message:'Email has been sent , kindly activate your account'});
+            return res.render('activate.pug',{message:'Email has been sent , kindly activate your account'});
           })
   };
 
@@ -72,10 +73,10 @@ module.exports.sign_post=(req,res)=>{
     {
       jwt.verify(token,process.env.JWT_SECRET,function(err,decodedToken){
         if(err){
-          return res.status(400).json({error:"Incorrect or Expired link"})
+          return res.render('',{error:"Incorrect or Expired link"})
         }
         const {email,password}=decodedToken;
-        db.query('SELECT email FROM `users` WHERE email=?',[email],async (err,results,fields)=>{
+        db.query('SELECT * FROM `users` WHERE email=?',[email],async (err,results,fields)=>{
           if(err)
           {
             console.log(err);
@@ -124,7 +125,6 @@ module.exports.sign_post=(req,res)=>{
           `
         }
         let ans=JSON.parse(JSON.stringify(results))
-        console.log(ans[0])
       var sql1="UPDATE `users` SET `resetlink` = '"+ token+"' WHERE `id`='"+ ans[0].id+"'";
       db.query(sql1,function(er,result){
         if(er){
@@ -216,3 +216,8 @@ module.exports.sign_post=(req,res)=>{
     }
     };
   
+    module.exports.logout_get=(req,res)=>{
+      res.cookie('jwt','',{maxAge:1});
+      res.redirect('/api/login')
+    }
+

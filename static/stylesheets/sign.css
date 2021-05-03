@@ -71,28 +71,13 @@ h1{
   box-shadow: 0px 3px 16px 0px rgba(0,0,0,.11);
 }
 
-  .close2 {
-    float:right;
-    margin:20px;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-  }
-
 .cart-items{
     margin:40px auto;
     display: flex;
     flex-direction: column;
     text-align: center;
 }
-
-.close2:hover,
-.close2:focus {
-    color: red;
-    cursor: pointer;
-}
-  
-  .signin-signup {
+.signin-signup {
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -102,7 +87,7 @@ h1{
     display: grid;
     grid-template-columns: 1fr;
     z-index: 5;
-  }
+ }
   
   #id02 form {
     display: flex;
@@ -116,12 +101,12 @@ h1{
     grid-row: 1 / 2;
   }
   
-  form.sign-up-form {
+  form.sign-in-form {
     opacity: 0;
     z-index: 1;
   }
   
-  form.sign-in-form {
+  form.sign-up-form {
     z-index: 2;
   }
   

@@ -6,12 +6,16 @@ block scripts
 block style
     style
         include ../static/stylesheets/style.css
-        include ../static/stylesheets/styleContact.css
+        include ../static/stylesheets/login.css
 
 block content
-    div.container
-        h1 Reset Password
-        form(action='/api/resetPassword/'+token,method="post",class="myForm")
-            input(type="password", class="myInput", name="newPass", placeholder="Enter new password")
-            button(class="btn")
-                | Submit
+    div.container-email
+        h1 YouTellWeSell
+        div.container-email-small
+            h1 Reset Password
+            form(action="/api/resetPassword/"+token,method="post",class="myForm")
+                div(class="input-field")
+                    i(class="fas fa-envelope")
+                    input(type="password" placeholder="Enter New Password",name="newPass")
+                    
+                input(type="submit" value="Submit" class="btn solid") 

@@ -6,12 +6,18 @@ block scripts
 block style
     style
         include ../static/stylesheets/style.css
-        include ../static/stylesheets/styleContact.css
+        include ../static/stylesheets/login.css
 
 block content
-    div.container
-        h1 Forgot Password
-        form(action="/api/forgot-password",method="post",class="myForm")
-            input(type="email", class="myInput", name="email", placeholder="Email")
-            button(class="btn")
-                | Submit
+    div.container-email
+        h1 YouTellWeSell
+        div.container-email-small
+            h1 Forgot Password
+            form(action="/api/forgot-password",method="post",class="myForm")
+                div(class="input-field")
+                    i(class="fas fa-envelope")
+                    input(type="email" placeholder="Email",name="email")
+                input(type="submit" value="Submit" class="btn solid") 
+                div(class="para-field")
+                    p 
+                        | For your security,we need to authenticate your request. We will we sending you a link on the email. Please click on it to complete verification.

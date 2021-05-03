@@ -1,0 +1,92 @@
+extends base.pug
+block scripts
+    script(src='../static/javascripts/index.js' async)
+    script(src='../static/javascripts/signin.js' async)
+
+block style
+    style
+        //- include ../static/stylesheets/style.css
+        include ../static/stylesheets/sign.css
+
+block content
+    div#id02.modal 
+        div(class="container-id01")
+            div(class="forms-container") 
+                div(class="signin-signup")
+                    form(action="/api/signin" class="sign-in-form" method="post")
+                        div#msg
+                            if(message!==null)
+                                h2 #{message}
+                        h2(class="title") Sign in
+
+                        div(class="input-field")
+                            i(class="fas fa-envelope")
+                            input(type="email" placeholder="Email",name="email")
+        
+                        div(class="input-field")
+                            i(class="fas fa-lock")
+                            input(type="password" placeholder="Password",name="psw")
+
+                        a(href="/api/forgot-password") Forgot Password?  
+            
+                        input(type="submit" value="Login" class="btn solid")
+                        p(class="social-text") Or Sign in with social platforms
+                        div(class="social-media")
+                            a(href='/api/email' class="social-icon")
+                                img(src="https://img.icons8.com/metro/52/000000/facebook-new--v2.png" class="fab fa-facebook-f")
+                            a(href='/api/email' class="social-icon")
+                                img(src="https://img.icons8.com/android/48/000000/twitter.png" class="fab fa-twitter")
+                            a(href='/api/email' class="social-icon")
+                                img(src="https://img.icons8.com/material-sharp/48/000000/google-logo.png" class="fab fa-google")
+                            a(href='/api/email' class="social-icon")
+                                img(src="https://img.icons8.com/android/48/000000/linkedin.png" class="fab fa-linkedin-in")            
+            
+                    form(action="/api/signup" class="sign-up-form" method="post")
+                        div#msg
+                            if(message!==null)
+                                h2 #{message}
+                        h2(class="title") Sign up
+                        div(class="input-field")
+                            i(class="fas fa-envelope")
+                            input(type="email" placeholder="Email",name="email")
+            
+                        div(class="input-field")
+                            i(class="fas fa-lock")
+                            input(type="password" placeholder="Password",name="psw")
+
+                        div(class="input-field")
+                            i(class="fas fa-lock")
+                            input(type="password" placeholder="Confirm Password",name="pswconfirm")    
+            
+                        input(type="submit" class="btn" value="Sign up")
+                        p(class="social-text") Or Sign up with social platforms
+                        div(class="social-media")
+                            a(href='/api/email' class="social-icon")
+                                img(src="https://img.icons8.com/metro/52/000000/facebook-new--v2.png" class="fab fa-facebook-f")
+                            a(href='/api/email' class="social-icon")
+                                img(src="https://img.icons8.com/android/48/000000/twitter.png" class="fab fa-twitter")
+                            a(href='/api/email' class="social-icon")
+                                img(src="https://img.icons8.com/material-sharp/48/000000/google-logo.png" class="fab fa-google")
+                            a(href='/api/email' class="social-icon")
+                                img(src="https://img.icons8.com/android/48/000000/linkedin.png" class="fab fa-linkedin-in")    
+            
+            div(class="panels-container")
+                div(class="panel left-panel")
+                    div(class="content")
+                        h3 Looks like you're new here!
+                        p 
+                        | Sign up with your email to get started
+            
+                        button(class="btn transparent" id="sign-up-btn")
+                            | Sign up
+                    img(src="../static/images/img/log.svg" class="image" alt="")
+        
+                div(class="panel right-panel")
+                    div(class="content")
+                        h3 Login
+                        p
+                        | Get access to your Orders, Wishlist and Recommendations
+        
+                        button(class="btn transparent" id="sign-in-btn")
+                            | Sign in
+                    img(src="../static/images/img/register.svg" class="image" alt="")

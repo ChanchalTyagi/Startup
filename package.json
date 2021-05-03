@@ -30,6 +30,7 @@
     "redis": "^3.0.2",
     "socket.io": "^4.0.0",
     "stripe": "^8.129.0",
+    "sweetalert": "^2.1.2",
     "then-busboy": "^5.0.0-beta.2",
     "web-push": "^3.4.4",
     "websocket": "^1.0.33"

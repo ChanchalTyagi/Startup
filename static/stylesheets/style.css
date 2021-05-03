@@ -525,7 +525,6 @@ h1{
     height:30px;
 }
 input[type='checkbox'] {
-    /* position: relative; */
     -webkit-appearance: none;
     background-image: url("../static/images/greyheart.png");
     width:100%;
