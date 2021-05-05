@@ -1,5 +1,4 @@
 extends base.pug
-
 block scripts
     script(src='../static/javascripts/index.js')
 
@@ -11,7 +10,7 @@ block style
 block content
     div.container-email
         h1 YouTellWeSell
-        div.container-email-small
-            div(class="para-field")
-                p 
-                    | Email has been sent , kindly activate your account.
+            if(message)
+                div(class="msg-field")
+                    p 
+                        | #{message}

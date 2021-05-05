@@ -1,22 +1,92 @@
 extends base.pug
-
 block scripts
     script(src='../static/javascripts/index.js')
 
 block style
     style
         include ../static/stylesheets/style.css
+        include ../static/stylesheets/styleProfile.css
 
 block content
-    div.box-main
+    div.profile-container
         div.profile
-            img(src='../static/images/'+data[0].image,alt='No image')
-        div.table
-            table(style='width:100%', border='1')
-                tr
-                    th Price
-                    th Year old
-                tr
-                    td #{data[0].price}
-                    td #{data[0].old}
-    
+            div.top-profile
+                img(src="https://img.icons8.com/color/96/000000/circled-user-male-skin-type-4--v1.png",alt='No image')
+            div.bottom-profile
+        div.table 
+            form(action="/api/profile/:id",method="post",class="myForm")
+                if(data)
+                    div.personal-info 
+                        h2 Personal Information
+                        if(data[0].fname)
+                            input(type="text", class="myInput", name="fname", placeholder=data[0].fname)
+                        else    
+                            input(type="text", class="myInput", name="fname", placeholder="First Name")
+                        if(data[0].lname)
+                            input(type="text", class="myInput", name="lname", placeholder=data[0].lname)
+                        else 
+                            input(type="text", class="myInput", name="lname", placeholder="Last Name")   
+                    div.gender-info 
+                        h2 Your gender
+                        if(data[0].gender)
+                            if(data[0].gender==male)
+                                input(type="radio" id="male" name="gender" value="male" checked)
+                            else 
+                                input(type="radio" id="male" name="gender" value="male")
+                            label(for="male") Male
+                            if(data[0].gender==female)
+                                input(type="radio" id="female" name="gender" value="female" checked)
+                            else 
+                                input(type="radio" id="female" name="gender" value="female")
+                            label(for="female") Female
+                    h2 Mobile Number    
+                    if(data[0].phone)
+                        input(type="text", class="myInput",id="phone", name="phone", placeholder=data[0].phone)
+                    else 
+                        input(type="text", class="myInput",id="phone", name="phone", placeholder="Enter your phone")
+                    h2 Your country 
+                    if(data[0].country)
+                        input(type="text", class="myInput",id="country", name="country", placeholder=data[0].country) 
+                    else 
+                        input(type="text", class="myInput",id="country", name="country", placeholder="Enter your country")     
+                    h2 Your state
+                    if(data[0].state)
+                        input(type="text", class="myInput",id="state", name="state", placeholder=data[0].state)     
+                    else 
+                        input(type="text", class="myInput",id="state", name="state", placeholder="Enter your state")      
+                    h2 Your city 
+                    if(data[0].city)
+                        input(type="text", class="myInput",name="city", placeholder=data[0].city)  
+                    else 
+                        input(type="text", class="myInput",name="city", placeholder="Enter your city")       
+                    h2 Your Address
+                    if(data[0].address)
+                        input(type="text", class="myInput",name="address", placeholder=data[0].address)  
+                    else 
+                        input(type="text", class="myInput",name="address", placeholder="Enter your address")       
+                    input(type="submit" class="btn" value="Save")
+                else 
+                    div.personal-info 
+                        h2 Personal Information
+                        input(type="text", class="myInput", name="fname", placeholder="First Name")
+                        input(type="text", class="myInput", name="lname", placeholder="Last Name")
+                    div.gender-info 
+                        h2 Your gender
+                        input(type="radio" id="male" name="gender" value="male")
+                        label(for="male") Male
+                        input(type="radio" id="female" name="gender" value="female")
+                        label(for="female") Female
+                        input(type="radio" id="other" name="gender" value="other")
+                        label(for="other") Other
+                    h2 Mobile Number    
+                    input(type="text", class="myInput",id="phone", name="phone", placeholder="Enter mobile number")
+                    h2 Your country 
+                    input(type="text", class="myInput",id="country", name="country", placeholder="Enter your country") 
+                    h2 Your state
+                    input(type="text", class="myInput",id="state", name="state", placeholder="Enter your state")     
+                    h2 Your city 
+                    input(type="text", class="myInput",id="city", name="city", placeholder="Enter your city")   
+                    h2 Your Address
+                    input(type="text", class="myInput",id="city", name="city", placeholder="Enter your address")   
+                    input(type="submit" class="btn" value="Save")
+                        

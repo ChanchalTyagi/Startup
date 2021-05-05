@@ -16,12 +16,6 @@ h1{
   margin:20px;
 }
 
-#msg{
-  height:40px;
-  width:60%;
-  color:red;
-}
-
 .container-id01 {
     position: relative;
     width: 100%;
@@ -71,13 +65,10 @@ h1{
   box-shadow: 0px 3px 16px 0px rgba(0,0,0,.11);
 }
 
-  .close2 {
-    float:right;
-    margin:20px;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-  }
+.container-email-small h3{
+  color:red;
+  font-size:15px;
+}
 
 .cart-items{
     margin:40px auto;
@@ -86,12 +77,6 @@ h1{
     text-align: center;
 }
 
-.close2:hover,
-.close2:focus {
-    color: red;
-    cursor: pointer;
-}
-  
   .signin-signup {
     position: absolute;
     top: 50%;
@@ -162,6 +147,24 @@ h1{
     position: relative;
   }
   
+  .msg-field{
+    max-width: 380px;
+    width: 100%;
+    margin: 10px 0;
+    height: 55px;
+    border-radius: 55px;
+    padding: 0 0.4rem;
+    position: relative;
+    box-shadow: 0px 3px 16px 0px rgba(0,0,0,.11);
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    margin:auto;
+  }
+
+  .msg-field p{
+    margin:20px;
+  }
   .input-field input {
     background:none;
     outline: none;
@@ -185,7 +188,7 @@ h1{
   
   .social-media {
     display: flex;
-    justify-content:space-evenly;
+    justify-content:center;
   }
   
   .social-icon {
@@ -204,8 +207,8 @@ h1{
   }
 
   .social-icon img{
-    width:45px;
-    height:45px;
+    width:40px;
+    height:40px;
   }
   
   .btn {
@@ -290,7 +293,7 @@ h1{
   }
   
   .panel p {
-    font-size: 0.95rem;
+    font-size:1.2rem;
     padding: 0.7rem 0;
   }
   

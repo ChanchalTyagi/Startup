@@ -1,7 +1,7 @@
 var express=require("express");
 const route = express.Router()
 var {sign_post,login_get,email_activate_get,forgot_password_get,forgot_password_post,reset_password_get,reset_password_post,login_post,logout_get}=require("./controllers/register.js");
-var {home,Search,Cooler,Cycle,Iron,Books,Kettle,Image,Cancel}=require("./controllers/home.js");
+var {home,Search,Cooler,Cycle,Iron,Books,Kettle,Image,Cancel,Profile_get,Profile_post,Cart_get}=require("./controllers/home.js");
 var {Sell,donate}=require("./controllers/upload.js");
 const { router } = require("websocket");
 var {requireAuth,checkUser}=require('./middleware/auth');
@@ -14,7 +14,10 @@ route.get("/cycle",Cycle);
 route.get("/kettle",Kettle);
 route.get("/books",Books);
 route.get("/iron",Iron);
+route.get('/profile/:id',Profile_get)
+route.post('/profile/:id',Profile_post);
 route.post("/sell",requireAuth,Sell);
+route.get('/cart',requireAuth,Cart_get);
 route.post("/donate",requireAuth,donate);
 route.get("/image/:id",requireAuth,Image);
 route.get("/cancel/:id",requireAuth,Cancel);

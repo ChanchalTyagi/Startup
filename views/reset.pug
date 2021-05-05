@@ -1,5 +1,4 @@
 extends base.pug
-
 block scripts
     script(src='../static/javascripts/index.js')
 
@@ -12,6 +11,8 @@ block content
     div.container-email
         h1 YouTellWeSell
         div.container-email-small
+            if(message)
+                h3 #{message}
             h1 Reset Password
             form(action="/api/resetPassword/"+token,method="post",class="myForm")
                 div(class="input-field")

@@ -31,7 +31,7 @@ module.exports.sign_post=(req,res)=>{
       {
         return res.render('login.pug',{message:'Invalid email'});
       }
-        db.query('SELECT email FROM `users` WHERE email=?',[email],async (err,results,fields)=>{
+        db.query('SELECT * FROM `users` WHERE email=?',[email],async (err,results,fields)=>{
           if(err)
           {
             console.log(err);
@@ -73,7 +73,7 @@ module.exports.sign_post=(req,res)=>{
     {
       jwt.verify(token,process.env.JWT_SECRET,function(err,decodedToken){
         if(err){
-          return res.render('',{error:"Incorrect or Expired link"})
+          return res.render('message.pug',{message:"Incorrect or Expired link"})
         }
         const {email,password}=decodedToken;
         db.query('SELECT * FROM `users` WHERE email=?',[email],async (err,results,fields)=>{
@@ -89,20 +89,20 @@ module.exports.sign_post=(req,res)=>{
           db.query(sql,function(err,results){
             if(err){
               console.log("Error in signup while account activation link: ",err);
-              return res.status(400).json({error:'Error activating account'})
+              return res.render('message.pug',{message:'Error activating account'})
             }
             else
-            res.json({message:"Signup success"}) 
+            res.render('message.pug',{message:"Signup success"}) 
           })
         })
       })
     }else{
-      return res.json({error:"Something went wrong"})
+      return res.render('message.pug',{message:"Something went wrong"})
     }
   };
 
   module.exports.forgot_password_get=(req,res)=>{
-    return res.render('forgot.pug');
+    return res.render('forgot.pug',{message:''});
 }
   
   module.exports.forgot_password_post=(req,res)=>{
@@ -110,7 +110,7 @@ module.exports.sign_post=(req,res)=>{
       db.query('SELECT * FROM `users` WHERE email=?',[email],async (err,results,fields)=>{
         if(err||results.length<=0)
         {
-          return res.send({message:'Email doesnt exists'})
+          return res.render('forgot.pug',{message:'Email doesnt exists'})
         }
         const token=jwt.sign({id:results[0].id},process.env.JWT_RESET_KEY,{
           expiresIn:process.env.JWT_EXPIRES_IN
@@ -128,7 +128,7 @@ module.exports.sign_post=(req,res)=>{
       var sql1="UPDATE `users` SET `resetlink` = '"+ token+"' WHERE `id`='"+ ans[0].id+"'";
       db.query(sql1,function(er,result){
         if(er){
-          return res.status(400).json({error:'Reset Password Link error'})
+          return res.render('forgot.pug',{message:'Reset Password Link error'})
         }
         else
         {
@@ -139,14 +139,14 @@ module.exports.sign_post=(req,res)=>{
              console.log('Email sent: ' + info.response);
            }
          });
-         return res.json({message:'Email has been sent , kindly activate your account'});
+         return res.render('message.pug',{message:'Email has been sent , kindly activate your account'});
         }
       })
     })
     };
     
   module.exports.reset_password_get=(req,res)=>{
-      return res.render('reset.pug',{token:req.params.token});
+      return res.render('reset.pug',{token:req.params.token,message:''});
   }
 
   module.exports.reset_password_post=(req,res)=>{
@@ -156,32 +156,32 @@ module.exports.sign_post=(req,res)=>{
     {
       jwt.verify(resetLink,process.env.JWT_RESET_KEY,function(err,decodedToken){
         if(err){
-          return res.status(400).json({error:"Incorrect or Expired link"})
+          return res.render('reset.pug',{message:"Incorrect or Expired link"})
         }
         db.query('SELECT * FROM `users` WHERE `resetlink`=?',[resetLink],async (err,results,fields)=>{
           if(err||results.length<=0)
           {
-            return res.status(400).json({message:'The user with this token doesnt exists'})
+            return res.render('reset.pug',{message:'The user with this token doesnt exists'})
           }
           if(newPass.length<6)
-          return res.json({message: "Password must be at least 6 characters."})
+          return res.render('reset.pug',{message: "Password must be at least 6 characters."})
 
           let hashedPassword=await bcrypt.hash(newPass,8);
           var sql="UPDATE `users` SET `psw` = '"+hashedPassword+"' WHERE `resetlink`='"+resetLink+"'";
           db.query(sql,function(er,result){
             if(er){
-              return res.status(400).json({error:'Reset Password Link error'})
+              return res.render('reset.pug',{message:'Reset Password Link error'})
             }
             else
             {
-                return res.json({message:'Your password has been changed'});
+                return res.render('login.pug',{message:''});
             }
           });
         });
       });
     } 
     else{
-      return res.status(401).json({Error:'Authentication error'})
+      return res.render('reset.pug',{message:'Authentication error'})
     }
   };
 
@@ -190,11 +190,11 @@ module.exports.sign_post=(req,res)=>{
       const email=req.body.email;
       const password=req.body.psw;
       if(!email||!password){
-        return res.json({message:'Please provide an email and password'});
+        return res.render('login.pug',{message:'Please provide an email and password'});
       }
       db.query('SELECT * FROM `users` WHERE email=?',[email],async (err,results,fields)=>{
         if(!results||!(await bcrypt.compare(password,results[0].psw))){
-          res.json({message:'Email or password is incorrect'})
+          res.render('login.pug',{message:'Email or password is incorrect'})
         }
         else{
           const id=results[0].id;

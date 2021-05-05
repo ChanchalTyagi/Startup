@@ -277,11 +277,12 @@ div{
     top: 0;
     width: 100%;
     height:100%;
-    background-color:transparent; 
+    background-color:#f1f3f6;
     overflow:auto;
     padding-top: 60px;
     text-align: center;
     justify-content: center;
+    text-align: center;
   }
 
 .modal::-webkit-scrollbar {
@@ -294,10 +295,13 @@ div{
 }
 
 .cart-modal{
-    width:40%;
+    width:60%;
     margin:40px auto;
-    background-color:#e0e0e0;
+    background-color:white;
     text-align: center;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 3px 16px 0px rgba(0,0,0,.11);
 }
 
 .close {
@@ -311,6 +315,7 @@ div{
 .cart-items{
     margin:40px auto;
     display: flex;
+    overflow:auto;
     flex-direction: column;
     text-align: center;
 }
@@ -331,7 +336,9 @@ h1{
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    height:40%;
+    width:80%;
+    height:200px;
+    margin:auto;
 }
 .cart-row img{
     position: relative;
@@ -640,41 +647,7 @@ input[type='checkbox']:checked {
  
  .each-logo img:hover{
     box-shadow: 0px 3px 16px 0px rgba(0,0,0,.11);
- } 
-
-.profile{
-    height:100vh;
-    margin:40px;
-    display: flex;
-}
-
-.profile .my-photo{
-    height:60%;
-    width:40%;
-    padding-left:40px;
-    justify-content: center;
-    align-items: center;
-}
-
-.my-photo img{
-    width:70%;
-    height:100%;
-    border-radius: 10px;
-}
-
-.my-intro{
-    height:60%;
-    width:60%;
-    padding-top:40px;
-}
-
-.my-intro p{
-    padding:10px;
-    font-size: 20px;
-    font-weight: 550;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-}
-
+ }
 .buttons{
     display: flex;
 }

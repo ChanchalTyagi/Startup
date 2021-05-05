@@ -66,16 +66,29 @@ function cartNumbers() {
     }
 }
 
-onloadCartNumbers()
+// onloadCartNumbers()
 
 function cancelCart(event) {
     var cartItems = document.getElementsByClassName('cart-items')[0]
     while (cartItems.hasChildNodes()) {
         cartItems.removeChild(cartItems.firstChild)
     }
+    var productNumbers = localStorage.getItem('cartNumbers')
+    productNumbers = parseInt(productNumbers)
+    if (productNumbers) {
+        localStorage.setItem('cartNumbers',0)
+        document.querySelector('.nav-list .span-cart').innerText = 0;
+    }
 }
 
 function removeCartItem(event) {
     var button = event.target
     button.parentElement.parentElement.remove()
+    var productNumbers = localStorage.getItem('cartNumbers')
+    productNumbers = parseInt(productNumbers)
+    if (productNumbers) {
+        localStorage.setItem('cartNumbers', productNumbers - 1)
+        document.querySelector('.nav-list .span-cart').innerText = productNumbers - 1;
+    }
+    // onloadCartNumbers()
 }

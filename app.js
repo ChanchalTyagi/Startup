@@ -111,6 +111,11 @@ app.get('/api/about', (req, res) => {
   res.status(200).render('about.pug', params);
 });
 
+app.get('/api/cart/:id', (req, res) => {
+  const params = {}
+  res.status(200).render('cart.pug', params);
+});
+
 app.get('/api/services', (req, res) => {
   const params = {}
   res.status(200).render('services.pug', params);
@@ -141,16 +146,6 @@ app.get('/api/donation',(req,res)=>{
   const params={}
   res.status(200).render('donation.pug',params)
 });
-
-// app.get('/api/image/:id', (req, res) => {
-//   var id = req.params.id;
-//   var sql="SELECT * FROM `search_table` WHERE `current_id`='" + id + "'";
-//   db.query(sql, function (err, result) {
-//     if (result.length <= 0)
-//       message = "Profile not found!";
-//     res.render('image.pug', {jsStringify, data: result});
-//   });
-// });
 
 server.listen(port, () => {
   console.log(`The application started successfully on port ${port}`);

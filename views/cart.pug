@@ -7,12 +7,12 @@ block scripts
 block style
     style
         include ../static/stylesheets/style.css
-        include ../static/responsive.css
-        include ../static/stylesheets/styleCart.css
 
 block content
-    div#cart-items 
-        h1 My Cart                            
-        button(class="btn cancel-cart" type="button" id="cart-cancel") Cancel Cart        
+    div.cart-modal 
+        span(onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal") &times
+        h1 My Cart        
+        div.cart-items                      
+        button(class="btn cancel-cart" ,id="cart-cancel") Cancel Cart       
     
     

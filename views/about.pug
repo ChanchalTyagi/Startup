@@ -1,5 +1,4 @@
-extends ./base.pug
-
+extends base.pug
 block scripts
     script(src='../static/javascripts/index.js')
     //- script(src='../static/javascripts/rasp.js')
@@ -7,15 +6,16 @@ block scripts
 block style
     style
         include ../static/stylesheets/style.css
-        include ../static/stylesheets/responsive.css
+        include ../static/stylesheets/styleAbout.css
 
 block content
-    div.profile
-        div.my-photo
-            img(src='../static/images/chanchal_image.jpg')
-        div.my-intro
-            p Name : Chanchal Tyagi 
-            p Branch : Chemical Engineering, 3rd Year
-            p College : Motilal Nehru National Institute Of Technology, Allahabad
-            p Profile : Full Stack Web Developer   
-             
+    div.container
+        div.image 
+            img(src="../static/images/sellandbuy.jpg")
+        div.para    
+            div.para-field
+                p 
+                    | We will help you out to arrange the necessary stuff that you would be needed in this 4 years of awesome college journey.
+            div.para-field
+                p 
+                    | We not only provide you a platform for a two-way exchange process , but to even offer your stuff to the juniors for free.

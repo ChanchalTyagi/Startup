@@ -146,5 +146,65 @@ module.exports.home=(req, res) => {
       res.render('image.pug', {jsStringify, data: result });
     });
   };
+
+  module.exports.Profile_get=(req, res) => {
+    var id = req.params.id;
+    var sql = "SELECT * FROM `customers` WHERE `user_id`='" + id + "'";
+    db.query(sql, function (err, result) {
+      if (result.length <= 0)
+      {
+        var sql1="INSERT INTO `customers`(`user_id`) VALUES ('" + id + "')";
+        db.query(sql1,function(err,results){
+        if(err){
+          console.log(err);
+        }
+        else
+        res.render('profile.pug',{data:''}) 
+      })
+      }
+      else{
+        res.render('profile.pug', {jsStringify, data: result });
+      }
+    });
+  };
+
+  module.exports.Profile_post=(req, res) => {
+    if(req.body.address)
+    console.log("chanchal")
+    var id = req.params.id;
+    console.log(id);
+    if(req.body.address)
+    console.log("chanchal")
+    var sql = "UPDATE `customers` SET `fname`='"+req.body.fname+"',`lname`='"+req.body.lname+"',`gender`='"+req.body.gender+"',`phone`='"+req.body.phone+"',`address`='"+req.body.address+"',`state`='"+req.body.state+"',`city`='"+req.body.city+"',`pincode`='"+req.body.pincode+"',`country`='"+req.body.country+"'  WHERE `user_id`='" + id + "'";
+    db.query(sql, function (err, result) {
+      if (err){
+        console.log(err);
+      }
+      else{
+        res.render('profile.pug', {jsStringify, data: result });
+      }
+    });
+  };
+
+  module.exports.Cart_get=(req, res) => {
+    const token=req.cookies.jwt;
+    jwt.verify(token,process.env.JWT_SECRET,function(err,decodedToken){
+    if(err){
+        res.redirect('/api/login');
+    }else{
+      var sql = "SELECT  `customers` SET `fname`='"+req.body.fname+"',`lname`='"+req.body.lname+"',`gender`='"+req.body.gender+"',`phone`='"+req.body.phone+"',`address`='"+req.body.address+"',`state`='"+req.body.state+"',`city`='"+req.body.city+"',`pincode`='"+req.body.pincode+"',`country`='"+req.body.country+"'  WHERE `user_id`='" + id + "'";
+      db.query(sql, function (err, result) {
+        if (err){
+          console.log(err);
+        }
+        else{
+          res.render('profile.pug', {jsStringify, data: result });
+        }
+      });
+    }
+  })
+  };
+
+
   
   
