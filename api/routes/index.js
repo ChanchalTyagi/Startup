@@ -1,7 +1,7 @@
 var express=require("express");
 const route = express.Router()
 var {sign_post,login_get,email_activate_get,forgot_password_get,forgot_password_post,reset_password_get,reset_password_post,login_post,logout_get}=require("./controllers/register.js");
-var {home,Search,Cooler,Cycle,Iron,Books,Kettle,Image,Cancel,Profile_get,Profile_post,Cart_get}=require("./controllers/home.js");
+var {home,Search,Cooler,Cycle,Iron,Books,Kettle,Image,Cancel,Profile_get,Profile_post,Cart_get,addProduct,delProduct}=require("./controllers/home.js");
 var {Sell,donate}=require("./controllers/upload.js");
 const { router } = require("websocket");
 var {requireAuth,checkUser}=require('./middleware/auth');
@@ -21,6 +21,8 @@ route.get('/cart',requireAuth,Cart_get);
 route.post("/donate",requireAuth,donate);
 route.get("/image/:id",requireAuth,Image);
 route.get("/cancel/:id",requireAuth,Cancel);
+route.get("/add/product/:id",requireAuth,addProduct);
+route.get("/delete/product/:id",requireAuth,delProduct);
 route.get('/login',login_get);
 route.post("/signup",sign_post);
 route.get('/reset-password',reset_password_get)

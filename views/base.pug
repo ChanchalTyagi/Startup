@@ -4,6 +4,7 @@ html
     title You Tell We Sell
     link(rel="icon" href="/static/images/logo1.png" type="image/png")
     block scripts
+        script(src='../static/javascripts/cart.js' defer="defer" async)
     block style
   body 
     nav.navbar 
@@ -19,11 +20,10 @@ html
                         img(src="/static/images/search.png")  
         div.nav-list 
             if(user)
-                div(class="dropdown")
+                div(class="dropdown")  
                     button(class="login-btn") My Account
                     div(class="dropdown-content")
                         a(href="/api/profile/"+user.id) My Profile
-                        a(href="/api/notification/"+user.id) My Notifications
                         a(href='/api/logout') Logout
             else 
                 button(class="login-btn" onclick="window.location.href='/api/login'")

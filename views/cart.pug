@@ -10,9 +10,23 @@ block style
 
 block content
     div.cart-modal 
-        span(onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal") &times
         h1 My Cart        
-        div.cart-items                      
-        button(class="btn cancel-cart" ,id="cart-cancel") Cancel Cart       
-    
-    
+        div#cart-item.cart-items  
+            if(data)  
+                each n,i in data  
+                    div.cart-row 
+                        a(href='/api/image/'+data[i].current_id) 
+                            img(src='/static/images/'+data[i].image,class="product-image-img")
+                        div(class="cart-price")
+                        h1 #{data[i].price}
+                        div(class="button-item")
+                            button(class="remove" ,onclick="return check('"+data[i].current_id+"')") Remove             
+                                
+            else 
+                h1 Your Cart is Empty     
+
+    script. 
+        function check(a){
+        var i=parseInt(a);
+        window.location.href='/api/delete/product/'+i;
+        }   
