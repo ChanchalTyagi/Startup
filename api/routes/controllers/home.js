@@ -48,7 +48,7 @@ module.exports.home=(req, res) => {
           if (results.length <= 0)
             message = "items not found";
             else
-        message=" ";
+            message=" ";
             res.status(200).render('home.pug', {jsStringify, data:result,data1:results,message:message});
         });
     });
@@ -67,7 +67,7 @@ module.exports.home=(req, res) => {
           if (results.length <= 0)
             message = "items not found";
             else
-        message=" ";
+            message=" ";
             res.status(200).render('home.pug', {jsStringify, data:result,data1:results,message:message});
         });
     });
@@ -86,7 +86,7 @@ module.exports.home=(req, res) => {
           if (results.length <= 0)
             message = "items not found";
             else
-        message=" ";
+            message=" ";
             res.status(200).render('home.pug', {jsStringify, data:result,data1:results,message:message});
         });
     });
@@ -105,7 +105,7 @@ module.exports.home=(req, res) => {
           if (results.length <= 0)
             message = "items not found";
             else
-        message=" ";
+            message=" ";
             res.status(200).render('home.pug', {jsStringify, data:result,data1:results,message:message});
         });
     });
@@ -124,7 +124,7 @@ module.exports.home=(req, res) => {
           if (results.length <= 0)
             message = "items not found";
             else
-        message=" ";
+            message=" ";
             res.status(200).render('home.pug', {jsStringify, data:result,data1:results,message:message});
         });
     });

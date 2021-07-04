@@ -36,7 +36,7 @@ div{
 }
 
 .navbar{
-    position:sticky;
+    position:fixed;
     display: flex;
     width:100%;
     height:65px;
@@ -222,8 +222,8 @@ div{
     position: relative;
     width:100%;
     background-color: white;
-    z-index:1;
-    margin:0 10px 10px 10px;
+    z-index:2;
+    margin:60px 10px 10px 10px;
     min-height:50px;
     height:60px;
     display: flex;
@@ -291,12 +291,14 @@ div{
 
 .modal{
   -ms-overflow-style: none; 
-  scrollbar-width: none;  
+   scrollbar-width: none;  
 }
 
 .cart-modal{
+    position: relative;
     width:60%;
-    margin:40px auto;
+    margin:auto;
+    top:60px;
     background-color:white;
     text-align: center;
     align-items: center;
@@ -318,6 +320,15 @@ div{
     overflow:auto;
     flex-direction: column;
     text-align: center;
+}
+
+.cart-items::-webkit-scrollbar {
+    display: none;
+}
+
+.cart-items{
+  -ms-overflow-style: none; 
+  scrollbar-width: none;  
 }
 
 .close:hover,

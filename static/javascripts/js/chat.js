@@ -12,7 +12,7 @@ const login = () => {
                 sessionStorage.setItem("user", JSON.stringify(resp.data));
                 $('#me').html(`
                         <div class="me">
-                            <img src="/static/${resp.data.user_image}" />
+                            <img src="../static/images/${resp.data.user_image}" />
                             ${resp.data.user_full_name}
                          </div>
                          `);
@@ -30,7 +30,7 @@ const sendMyMessage = (chatWidowId, fromUser, message) => {
     $('#after-login').find(`#${chatWidowId} .body`).append(`
         <div class="chat-text ${meClass}">
             <div class="userPhoto">
-                <img src="/static/${fromUser.user_image}" />
+                <img src="../static/images/${fromUser.user_image}" />
             </div>
             <div>
                 <span class="message">${message}<span>

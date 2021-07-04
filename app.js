@@ -111,11 +111,6 @@ app.get('/api/about', (req, res) => {
   res.status(200).render('about.pug', params);
 });
 
-app.get('/api/cart/:id', (req, res) => {
-  const params = {}
-  res.status(200).render('cart.pug', params);
-});
-
 app.get('/api/services', (req, res) => {
   const params = {}
   res.status(200).render('services.pug', params);

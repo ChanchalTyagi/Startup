@@ -193,8 +193,13 @@ module.exports.sign_post=(req,res)=>{
         return res.render('login.pug',{message:'Please provide an email and password'});
       }
       db.query('SELECT * FROM `users` WHERE email=?',[email],async (err,results,fields)=>{
-        if(!results||!(await bcrypt.compare(password,results[0].psw))){
-          res.render('login.pug',{message:'Email or password is incorrect'})
+        if(err||results.length<=0)
+        {
+          res.render('login.pug',{message:'Email or password is incorrect'});
+        }
+        if(!await bcrypt.compare(password,results[0].psw))
+        {
+          res.render('login.pug',{message:'Email or password is incorrect'});
         }
         else{
           const id=results[0].id;

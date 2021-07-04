@@ -93,14 +93,36 @@
 //     // onloadCartNumbers()
 // }
 
-if (document.readyState == 'loading') {
+    if (document.readyState == 'loading') {
         document.addEventListener('DOMContentLoaded', ready)
     } else {
         ready()
     }
     
     function ready() {
-        var cartItems = document.querySelector('#cart-item');
+      var cartItems = document.querySelector('#cart-item');
+      if(cartItems)
+      {
         console.log(cartItems.childElementCount)
-      document.querySelector('.nav-list .span-cart').innerText=cartItems.childElementCount;
+        var cartRow = document.querySelector('.cart-row');
+        if(cartRow)
+        {
+          localStorage.setItem('cartNumbers',cartItems.childElementCount)
+          document.querySelector('.nav-list .span-cart').innerText=cartItems.childElementCount;
+        }
+        else
+        {
+          localStorage.setItem('cartNumbers',0)
+          document.querySelector('.nav-list .span-cart').innerText=0;
+        }
+      }
+      else
+      {
+        var productNumbers = localStorage.getItem('cartNumbers')
+        productNumbers = parseInt(productNumbers)
+        document.querySelector('.nav-list .span-cart').innerText=productNumbers;
+      }
     }
+
+   
+
