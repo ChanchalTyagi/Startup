@@ -1,2 +1,8 @@
 # Startup
-Website for MNNIT students to sell final year old stuff to juniors.
+## Running the project
+
+```
+npm install
+nodemon app.js
+```
+
