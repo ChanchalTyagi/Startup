@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 const jsStringify = require('js-stringify');  
 const webpush=require("web-push");      
 var cors=require('cors');                        
-const port = 8080; 
+const port = 8000; 
 var routes=require("./api/routes/index.js"); 
 var db=require("./api/routes/controllers/model.js");  
 app.set('views', path.join(__dirname, 'views'));   
@@ -19,21 +19,22 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
-app.use("/api",routes);
 webpush.setVapidDetails(
   "mailto:chanchaltyagi3727@gmail.com",
   process.env.PUBLIC_KEY,
   process.env.PRIVATE_KEY
 );
 
-app.post("/subscribe", (req, res) => {
-  const subscription = req.body;
+app.post("/", (req, res) => {
+  const subscription = "chanchal";
   res.status(201).json({});
   const payload = JSON.stringify({ title: "Push Test" });
   webpush
     .sendNotification(subscription, payload)
     .catch(err => console.error(err));
 });
+
+app.use("/api",routes);
 
 // var mysql       = require('mysql');
 const server    = require('http').createServer(app);
@@ -125,17 +126,6 @@ app.get('/api/donate',(req,res)=>{
   const params={}
   res.status(200).render('donate.pug',params)
 });
-
-// app.get('/profile/:id', (req, res) => {
-//   var message = '';
-//   var id = req.params.id;
-//   var sql = "SELECT * FROM `search_table` WHERE `id`='" + id + "'";
-//   db.query(sql, function (err, result) {
-//     if (result.length <= 0)
-//       message = "Profile not found!";
-//     res.render('profile.pug', {jsStringify, data: result, message: message });
-//   });
-// });
 
 app.get('/api/donation',(req,res)=>{
   const params={}

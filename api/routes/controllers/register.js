@@ -63,7 +63,7 @@ module.exports.sign_post=(req,res)=>{
                 console.log('Email sent: ' + info.response);
               }
             });
-            return res.render('activate.pug',{message:'Email has been sent , kindly activate your account'});
+            return res.render('message.pug',{message:'Email has been sent , kindly activate your account'});
           })
   };
 
@@ -223,6 +223,6 @@ module.exports.sign_post=(req,res)=>{
   
     module.exports.logout_get=(req,res)=>{
       res.cookie('jwt','',{maxAge:1});
-      res.redirect('/api/login')
+      res.redirect('/api/')
     }
 

@@ -1,5 +1,4 @@
 const publicVapidKey="BGwV7hHNvgmX6fegHZfdRKjtucHosTL1UI56hTfeLlGIhHiuxXY_3-pLertixuBXF1yuP-2AgB455KrsomRRDYM";
-
 // Check for service worker
 if ("serviceWorker" in navigator) {
   send().catch(err => console.error(err));
@@ -24,8 +23,8 @@ async function send() {
 
   // Send Push Notification
   console.log("Sending Push...");
-  await fetch("/subscribe", {
-    method: "POST",
+  await fetch("/api", {
+    method: "GET",
     body: JSON.stringify(subscription),
     headers: {
       "content-type": "application/json"
@@ -48,3 +47,5 @@ function urlBase64ToUint8Array(base64String) {
   }
   return outputArray;
 }
+
+

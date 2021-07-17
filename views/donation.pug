@@ -1,12 +1,13 @@
 extends base.pug
 block scripts
-    script(src='../static/javascripts/index.js' async)
-    script(src='../static/javascripts/rasp.js' async)
-
+    //- script(src='../static/javascripts/index.js' async)
+    //- script(src='../static/javascripts/rasp.js' async)
+    script(src='../static/javascripts/cart.js' defer="defer" async)
 block style
     style
         include ../static/stylesheets/style.css
         include ../static/stylesheets/styleDonation.css
+        include ../static/stylesheets/styleResponsive.css
 block content
     div.don-items 
         h1 Products For Donation 

@@ -1,13 +1,12 @@
 extends base.pug
 block scripts
-    script(src='../static/javascripts/index.js' async)
     script(src='../static/javascripts/login.js' async)
 
 block style
     style
         //- include ../static/stylesheets/style.css
         include ../static/stylesheets/login.css
-
+        //- include ../static/stylesheets/styleResponsive.css
 block content
    div#id02.modal 
         div(class="container-id01")

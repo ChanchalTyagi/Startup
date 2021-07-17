@@ -5,14 +5,17 @@
 }
 .container{
     z-index:-1;
-    min-height:80vh;
+    min-height:100vh;
+    width:60%;
     display:flex;
     flex-direction: column;
     align-items: center;
+    margin:auto;
+    box-shadow: 0px 3px 16px 0px rgba(0,0,0,.11);
 }
 h1{
     text-align: center;
-    margin: 12px 0px;
+    margin: 80px 0px;
     font-size: 34px;
 }
 
@@ -40,7 +43,7 @@ h1{
     border:2px solid black;
     border-radius: 10px;
     color:white;
-    background-color: #d43b3b;
+    background-color: #2874f0;
     cursor:pointer;
     outline:none;
 }

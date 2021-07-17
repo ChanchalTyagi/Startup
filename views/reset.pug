@@ -1,12 +1,12 @@
 extends base.pug
 block scripts
-    script(src='../static/javascripts/index.js')
-
+    //- script(src='../static/javascripts/index.js')
+    script(src='../static/javascripts/cart.js' defer="defer" async)
 block style
     style
         include ../static/stylesheets/style.css
         include ../static/stylesheets/login.css
-
+        include ../static/stylesheets/styleResponsive.css
 block content
     div.container-email
         h1 YouTellWeSell

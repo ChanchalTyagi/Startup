@@ -101,14 +101,14 @@
     
     function ready() {
       var cartItems = document.querySelector('#cart-item');
+      
       if(cartItems)
       {
-        console.log(cartItems.childElementCount)
         var cartRow = document.querySelector('.cart-row');
         if(cartRow)
         {
-          localStorage.setItem('cartNumbers',cartItems.childElementCount)
-          document.querySelector('.nav-list .span-cart').innerText=cartItems.childElementCount;
+          localStorage.setItem('cartNumbers',cartItems.childElementCount-1)
+          document.querySelector('.nav-list .span-cart').innerText=cartItems.childElementCount-1;
         }
         else
         {

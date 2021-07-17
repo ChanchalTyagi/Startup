@@ -5,9 +5,10 @@ html
     link(rel="icon" href="/static/images/logo1.png" type="image/png")
     block scripts
         script(src='../static/javascripts/cart.js' defer="defer" async)
+        script(src='../static/javascripts/cartnumber.js' defer="defer" async)
     block style
   body 
-    nav.navbar 
+    div.navbar 
         div.space
         div.first  
             img(src="/static/images/logo1.png")
@@ -27,10 +28,15 @@ html
                         a(href='/api/logout') Logout
             else 
                 button(class="login-btn" onclick="window.location.href='/api/login'")
-                    | Login         
-            div(class="mycart",onclick="window.location.href='/api/cart'")
-                img(src="https://img.icons8.com/fluent-systems-filled/48/000000/shopping-cart-loaded.png")
-                span(class="span-cart") 0      
+                    | Login      
+            if(user)           
+                div(class="mycart",onclick="window.location.href='/api/cart'")
+                    img(src="https://img.icons8.com/fluent-systems-filled/48/000000/shopping-cart-loaded.png")
+                    span(class="span-cart") 0      
+            else 
+                div(class="mycart",onclick="window.location.href='/api/cart'")
+                    img(src="https://img.icons8.com/fluent-systems-filled/48/000000/shopping-cart-loaded.png")
+                    span(class="span-cart-zero") 0        
             
             div(class="dropdown")
                 button(class="login-btn drop-btn") Start Selling
@@ -49,5 +55,8 @@ html
     block content
     footer#footer
        |   Copyright © 2020 YouTellWeSell.com | All rights reserved
+
+    
+    
 
     

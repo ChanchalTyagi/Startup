@@ -2,7 +2,15 @@ const multer=require("multer");
 var db=require("./model.js");
 var upload=require("./multer.js");
 
-  module.exports.Sell=function(req,res,next){
+module.exports.Sell_get=(req,res)=>{
+  return res.render('sell.pug');
+}
+
+module.exports.donate_get=(req,res)=>{
+  return res.render('donate.pug');
+}
+
+  module.exports.Sell_post=function(req,res,next){
     upload(req, res, function(err) {
       if (err) {
           return res.end("Something went wrong!");
@@ -32,7 +40,7 @@ var upload=require("./multer.js");
   });
   };
   
-  module.exports.donate=function(req,res,next){
+  module.exports.donate_post=function(req,res,next){
     upload(req, res, function(err) {
       if (err) {
           return res.end("Something went wrong!");

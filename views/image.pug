@@ -1,22 +1,21 @@
 extends base.pug
 block scripts
-    script(src='../static/javascripts/index.js')
-    //- script(src='/static/zoom.js')
-    
+    //- script(src='../static/javascripts/index.js')
+    script(src='../static/javascripts/cart.js' defer="defer" async)
 block style
     style
         include ../static/stylesheets/style.css
         include ../static/stylesheets/styleImage.css 
-        include ../static/stylesheets/responsive.css
+        include ../static/stylesheets/styleResponsive.css
 block content  
     div.items-nav
-            ul.items-list
-                li #[a(href="/api/") All Categories]
-                li #[a(href="/api/cooler") Cooler]
-                li #[a(href="/api/cycle") Bicycles]
-                li #[a(href="/api/boooks") Books] 
-                li #[a(href="/api/iron") Iron] 
-                li #[a(href="/api/kettle") Kettle]  
+        ul.items-list
+            li #[a(href="/api/") All Categories]
+            li #[a(href="/api/cooler") Cooler]
+            li #[a(href="/api/cycle") Bicycles]
+            li #[a(href="/api/boooks") Books] 
+            li #[a(href="/api/iron") Iron] 
+            li #[a(href="/api/kettle") Kettle]  
                 //- div(class="mycart",onclick="document.getElementById('id01').style.display='block'")
                 //-     img(src="https://img.icons8.com/material-sharp/24/000000/shopping-cart.png")
                 //-     span(class="span-cart") 0
@@ -81,6 +80,8 @@ block content
        slides[slideIndex-1].style.display = "block";
         dots[slideIndex-1].className += " active";
      }                 
+
+
 
             
     

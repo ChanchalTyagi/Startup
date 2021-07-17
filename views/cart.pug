@@ -1,24 +1,25 @@
 extends base.pug
 block scripts
-    script(src='../static/javascripts/index.js' async)
-    script(src='../static/javascripts/rasp.js' async)
+    //- script(src='../static/javascripts/index.js' async)
+    //- script(src='../static/javascripts/rasp.js' async)
     script(src='../static/javascripts/cart.js' defer="defer" async)
 
 block style
     style
         include ../static/stylesheets/style.css
+        include ../static/stylesheets/styleResponsive.css
 
 block content
-    div.cart-modal 
-        h1 My Cart        
-        div#cart-item.cart-items  
+    div.cart-modal        
+        div#cart-item.cart-items 
+            h1 My Cart  
             if(data)  
                 each n,i in data  
                     div.cart-row 
                         a(href='/api/image/'+data[i].current_id) 
-                            img(src='/static/images/'+data[i].image,class="product-image-img")
-                        div(class="cart-price")
-                        h1 #{data[i].price}
+                            img(src='/static/images/'+data[i].image,class="product-image-img")     
+                        div(class="cart-price")   
+                        h1 #{data[i].price}       
                         div(class="button-item")           
                             button(class="remove" ,onclick="return check('"+data[i].current_id+"')") Remove  
             else 
