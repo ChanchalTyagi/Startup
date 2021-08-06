@@ -152,6 +152,17 @@ module.exports.Cancel = (req, res) => {
 
 module.exports.Profile_get = (req, res) => {
   var id = req.params.id;
+  var sql1 = "SELECT * FROM `user_sell_products` WHERE `user_id`='" + id + "'";
+  var result1;
+  db.query(sql1, function (err, result) {
+    if (result.length <= 0) {
+       result1='';
+    }
+    else{
+       result1=result;
+    }
+  });
+  
   var sql = "SELECT * FROM `customers` WHERE `user_id`='" + id + "'";
   db.query(sql, function (err, result) {
     if (result.length <= 0) {
@@ -161,11 +172,11 @@ module.exports.Profile_get = (req, res) => {
           console.log(err);
         }
         else
-          res.render('profile.pug', { data: '' });
+          res.render('profile.pug', { data: '' ,data1:result1});
       })
     }
     else {
-      res.render('profile.pug', { jsStringify, data: result });
+      res.render('profile.pug', { jsStringify, data: result ,data1:result1});
     }
   });
 };
