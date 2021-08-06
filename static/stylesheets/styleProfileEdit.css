@@ -4,6 +4,7 @@ body{
 
 .profile-container{
     position:relative;
+    /* z-index:3; */
     margin:auto;
     width:80%;
     height:100vh;
@@ -13,7 +14,17 @@ body{
     justify-content: center;
     align-items:center;
     text-align: center;
+    overflow-y:scroll;
 }
+
+.profile-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .profile-container {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
+  }
 
 .profile{
     position: relative;
@@ -57,8 +68,6 @@ body{
     background-color: white;
     box-shadow: 0px 3px 16px 0px rgba(0,0,0,.11);
     display:flex;
-    padding:20px;
-    margin:auto;
 }
 
 .table #myForm{
@@ -72,10 +81,6 @@ body{
     padding:20px;
 }
 
-.table .personal-info{
-    top:100px;
-}
-
 h2{
     position: relative;
     font-size:20px;
@@ -85,10 +90,9 @@ h2{
 .btn{
     padding:11px 18px;
     font-size:18px;
-    border:2px solid black;
     border-radius: 10px;
     color:white;
-    background-color: #d43b3b;
+    background-color: blue;
     cursor:pointer;
     outline:none;
 }
@@ -98,6 +102,7 @@ h2{
     padding:9px;
     margin:8px;
     font-size:15px;
+    color:black;
     outline:none;
 }
 

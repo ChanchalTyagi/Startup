@@ -162,7 +162,7 @@ module.exports.Profile_get = (req, res) => {
        result1=result;
     }
   });
-  
+
   var sql = "SELECT * FROM `customers` WHERE `user_id`='" + id + "'";
   db.query(sql, function (err, result) {
     if (result.length <= 0) {
@@ -183,13 +183,23 @@ module.exports.Profile_get = (req, res) => {
 
 module.exports.edit_get = (req, res) => {
   var id = req.params.id;
+  var sql1 = "SELECT * FROM `user_sell_products` WHERE `user_id`='" + id + "'";
+  var result1;
+  db.query(sql1, function (err, result) {
+    if (result.length <= 0) {
+       result1='';
+    }
+    else{
+       result1=result;
+    }
+  });
   var sql = "SELECT * FROM `customers` WHERE `user_id`='" + id + "'";
   db.query(sql, function (err, result) {
     if (err) {
       console.log(err);
     }
     else {
-      res.render('profile_edit.pug', { jsStringify, data: result });
+      res.render('profile_edit.pug', { jsStringify, data: result,data1:result1 });
     }
   });
 };

@@ -11,14 +11,14 @@ block content
     div.container
         h1 Kindly fill the information about your product
         form(action="/api/sell",method="post",class="myForm" enctype="multipart/form-data")
-            input(type="text", class="myInput", name="name", placeholder="Enter your name")
-            input(type="number", class="myInput", name="year", placeholder="Enter your year")
-            input(type="text", class="myInput", name="product", placeholder="Enter your product name")
-            input(type="text", class="myInput", name="mob_no", placeholder="Enter your phone number")
-            input(type="number", class="myInput", name="old", placeholder="Enter how old is your product")
-            input(type="text", class="myInput", name="price", placeholder="Enter price range of the product")
-            input(type="file",class="myInput",name="myimage" multiple)
-            textarea(class="myinput",name="descript" rows="4" cols="64",placeholder="Describe your product")
+            input(type="text", class="myInput", name="name", placeholder="Enter your name" required)
+            input(type="number", class="myInput", name="year", placeholder="Enter your year" required)
+            input(type="text", class="myInput", name="product", placeholder="Enter your product name" required)
+            input(type="text", class="myInput", name="mob_no", placeholder="Enter your phone number" required)
+            input(type="number", class="myInput", name="old", placeholder="Enter how old is your product" required)
+            input(type="text", class="myInput", name="price", placeholder="Enter price range of the product" required)
+            input(type="file",class="myInput",name="myimage" multiple,required)
+            textarea(class="myinput",name="descript" rows="4" cols="64",placeholder="Describe your product" required)
             button(class="btn")
                 | Upload
                 
