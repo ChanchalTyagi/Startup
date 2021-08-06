@@ -1,7 +1,7 @@
 
 @media only screen and (min-width: 400px){
     .main-cards .cards{
-        grid-template-columns: auto;
+        grid-template-columns: auto auto;
     }
     .navbar .space{
         display:none;
@@ -10,7 +10,7 @@
 
 @media only screen and (min-width: 800px){
     .main-cards .cards{
-        grid-template-columns: auto auto;
+        grid-template-columns: auto auto auto;
     }
     .navbar .space{
         display:none;
@@ -19,7 +19,7 @@
 
 @media only screen and (min-width: 1000px){
     .main-cards .cards{
-        grid-template-columns: auto auto auto;
+        grid-template-columns: auto auto auto auto;
     }
     .navbar .space{
         display:none;

@@ -33,7 +33,7 @@ const checkUser = (req, res, next) => {
                     if(err)
                     console.log(err)
                     else{
-                        let ans=JSON.parse(JSON.stringify(results))
+                        let ans=JSON.parse(JSON.stringify(results));
                         res.locals.user=ans[0];
                         next();
                     }

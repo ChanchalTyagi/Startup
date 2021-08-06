@@ -2,6 +2,7 @@ extends base.pug
 block scripts
     //- script(src='../static/javascripts/index.js')
     script(src='../static/javascripts/cart.js' defer="defer" async)
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
 block style
     style
         include ../static/stylesheets/style.css
@@ -13,8 +14,13 @@ block content
             div.top-profile
                 img(src="https://img.icons8.com/color/96/000000/circled-user-male-skin-type-4--v1.png",alt='No image')
             div.bottom-profile
+                div.donate-count 
+                    h2 data1[0].
+                div.sell-count
+
         div.table 
-            form(action="/api/profile/:id",method="post",class="myForm")
+            form(action="/api/profile/"+data[0].user_id,method="post",id="myForm") 
+                a(href='/api/edit/'+data[0].user_id) edit
                 if(data)
                     div.personal-info 
                         h2 Personal Information
@@ -29,16 +35,20 @@ block content
                     div.gender-info 
                         h2 Your gender
                         if(data[0].gender)
-                            if(data[0].gender==male)
-                                input(type="radio" id="male" name="gender" value="male" checked)
-                            else 
-                                input(type="radio" id="male" name="gender" value="male")
-                            label(for="male") Male
-                            if(data[0].gender==female)
-                                input(type="radio" id="female" name="gender" value="female" checked)
-                            else 
-                                input(type="radio" id="female" name="gender" value="female")
-                            label(for="female") Female
+                            if(data[0].gender==='male')
+                                div.gender-info-single
+                                    input(type="radio" id="male" name="gender" value="male" checked)
+                                    label(for="male") Male
+                            if(data[0].gender==='female')
+                                div.gender-info-single
+                                    input(type="radio" id="female" name="gender" value="female" checked)
+                                    label(for="female") Female
+                            if(data[0].gender===other)
+                                div.gender-info-single
+                                    input(type="radio" id="other" name="other" value="other" checked)
+                                    label(for="other") Other
+                        else  
+                            h2 Kindly Specify Your Gender
                     h2 Mobile Number    
                     if(data[0].phone)
                         input(type="text", class="myInput",id="phone", name="phone", placeholder=data[0].phone)
@@ -63,8 +73,12 @@ block content
                     if(data[0].address)
                         input(type="text", class="myInput",name="address", placeholder=data[0].address)  
                     else 
-                        input(type="text", class="myInput",name="address", placeholder="Enter your address")       
-                    input(type="submit" class="btn" value="Save")
+                        input(type="text", class="myInput",name="address", placeholder="Enter your address")  
+                    h2 Pincode 
+                    if(data[0].pincode)
+                        input(type="text", class="myInput",id="pcode", name="pcode", placeholder=data[0].pincode)    
+                    else
+                        input(type="text", class="myInput",id="pcode", name="pcode", placeholder="Enter pincode")     
                 else 
                     div.personal-info 
                         h2 Personal Information
@@ -72,12 +86,15 @@ block content
                         input(type="text", class="myInput", name="lname", placeholder="Last Name")
                     div.gender-info 
                         h2 Your gender
-                        input(type="radio" id="male" name="gender" value="male")
-                        label(for="male") Male
-                        input(type="radio" id="female" name="gender" value="female")
-                        label(for="female") Female
-                        input(type="radio" id="other" name="gender" value="other")
-                        label(for="other") Other
+                        div.gender-info-single
+                            input(type="radio" id="male" name="gender" value="male")
+                            label(for="female") Male
+                        div.gender-info-single
+                            input(type="radio" id="female" name="gender" value="female")
+                            label(for="female") Female
+                        div.gender-info-single
+                            input(type="radio" id="other" name="gender" value="other")
+                            label(for="female") Other
                     h2 Mobile Number    
                     input(type="text", class="myInput",id="phone", name="phone", placeholder="Enter mobile number")
                     h2 Your country 
@@ -87,6 +104,12 @@ block content
                     h2 Your city 
                     input(type="text", class="myInput",id="city", name="city", placeholder="Enter your city")   
                     h2 Your Address
-                    input(type="text", class="myInput",id="city", name="city", placeholder="Enter your address")   
-                    input(type="submit" class="btn" value="Save")
-                        
+                    input(type="text", class="myInput",id="address", name="address", placeholder="Enter your address") 
+                    h2 Pincode 
+                    input(type="text", class="myInput",id="pcode", name="pcode", placeholder="Enter pincode")
+
+    script.           
+        $('input').attr('readonly', true);
+
+
+

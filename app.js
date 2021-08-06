@@ -2,6 +2,8 @@ const express = require("express");
 var path = require("path");
 var http = require("http");
 const dotenv=require('dotenv');
+let alert = require('alert'); 
+// alert("message")
 dotenv.config({path:'./api/routes/controllers/.env'});
 const cookieParser=require('cookie-parser');       
 const app = express();

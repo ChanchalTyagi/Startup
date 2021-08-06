@@ -66,7 +66,7 @@ module.exports.sign_post=(req,res)=>{
             return res.render('message.pug',{message:'Email has been sent , kindly activate your account'});
           })
   };
-
+  
   module.exports.email_activate_get=(req,res)=>{
     const token=req.params.token;
     if(token)
@@ -89,7 +89,7 @@ module.exports.sign_post=(req,res)=>{
           db.query(sql,function(err,results){
             if(err){
               console.log("Error in signup while account activation link: ",err);
-              return res.render('message.pug',{message:'Error activating account'})
+              return res.render('message.pug',{message:'Error activating account'});
             }
             else
             res.render('message.pug',{message:"Signup success"}) 
@@ -100,10 +100,10 @@ module.exports.sign_post=(req,res)=>{
       return res.render('message.pug',{message:"Something went wrong"})
     }
   };
-
+  
   module.exports.forgot_password_get=(req,res)=>{
     return res.render('forgot.pug',{message:''});
-}
+  }
   
   module.exports.forgot_password_post=(req,res)=>{
       const email=req.body.email;
@@ -195,11 +195,11 @@ module.exports.sign_post=(req,res)=>{
       db.query('SELECT * FROM `users` WHERE email=?',[email],async (err,results,fields)=>{
         if(err||results.length<=0)
         {
-          res.render('login.pug',{message:'Email or password is incorrect'});
+          return res.render('login.pug',{message:'Kindly signup'});
         }
         if(!await bcrypt.compare(password,results[0].psw))
         {
-          res.render('login.pug',{message:'Email or password is incorrect'});
+          return res.render('login.pug',{message:'Email or password is incorrect'});
         }
         else{
           const id=results[0].id;
