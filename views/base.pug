@@ -26,6 +26,7 @@ html
                     button(class="login-btn") My Account
                     div(class="dropdown-content")
                         a(href="/api/profile/"+user.id) My Profile
+                        a(href='/api/myitems/'+user.id) My Items
                         a(href='/api/logout') Logout
             else 
                 button(class="login-btn" onclick="window.location.href='/api/login'")

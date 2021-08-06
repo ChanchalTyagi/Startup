@@ -14,16 +14,19 @@ block content
             div.top-profile    
                 img(src="https://img.icons8.com/color/96/000000/circled-user-male-skin-type-4--v1.png",alt='No image')
             div.bottom-profile
-                div.donate-count
-                    if(data1[0].donate) 
-                        h2 Items For Donation #{data1[0].donate}
-                    else 
-                        | No Items For Donation
-                div.sell-count
-                    if(data1[0].sell)
-                        h2 Items For Sell #{data1[0].sell}
-                    else  
-                        | No Items For Sell
+                if(data1)
+                    div.donate-count
+                        if(data1[0].donate) 
+                            h2 Items For Donation #{data1[0].donate}
+                        else 
+                            | No Items For Donation
+                    div.sell-count
+                        if(data1[0].sell)
+                            h2 Items For Sell #{data1[0].sell}
+                        else  
+                            | No Items For Sell
+                else 
+                    h2 You dont have any items for sell and donation
 
         div.table 
             div#myForm

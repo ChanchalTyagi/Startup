@@ -156,7 +156,7 @@ div{
     background-color: #f9f9f9;
     top:51px;
     min-width: 120px;
-    height:100px;
+    height:150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     align-items:center;
     text-align: center;
@@ -349,9 +349,15 @@ h1{
     height:200px;
     margin:auto;
 }
+
+.cart-row a{
+    position:relative;
+    height:100%;
+    width:50%;
+}
 .cart-row img{
     position: relative;
-    width:30%;
+    width:70%;
     height:70%;
     margin:20px;
 }

@@ -1,16 +1,16 @@
 extends base.pug
 block scripts
-    //- script(src='../static/javascripts/index.js' async)
-    //- script(src='../static/javascripts/rasp.js' async)
-    script(src='../static/javascripts/cart.js' defer="defer" async)
-block style
+    //- script(src='../static/javascripts/index.js' async)  
+    //- script(src='../static/javascripts/rasp.js' async)  
+    script(src='../static/javascripts/cart.js' defer="defer" async)   
+block style  
     style
-        include ../static/stylesheets/style.css
-        include ../static/stylesheets/styleDonation.css
-        include ../static/stylesheets/styleResponsive.css
+        include ../static/stylesheets/style.css                
+        include ../static/stylesheets/styleDonation.css           
+        include ../static/stylesheets/styleResponsive.css  
 block content
     div.don-items 
-        h1 Products For Donation 
+        h1 Products For Donation                                    
         div.don-row
             img(src="/static/images/cooler.jpg")
             div.info-don-per 
@@ -39,4 +39,4 @@ block content
                 h2 Year 
                 h2 Contact Number
             h2(class="descript") Description  
-      
+        

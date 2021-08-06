@@ -31,7 +31,7 @@ block content
 
         div.main-cards  
             h1 Fresh Recommendations          
-            div.cards     
+            div.cards   
                 each n,i in data
                     div.box-main 
                         div.product-image
@@ -107,7 +107,7 @@ block content
        
        function check(a){
        var i=parseInt(a);
-        window.location.href='/api/add/product/'+i;
+        window.location.href='/api/add/product/cart/'+i;
        }
 
        

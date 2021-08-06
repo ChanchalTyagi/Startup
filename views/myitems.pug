@@ -1,0 +1,43 @@
+extends base.pug
+block scripts
+    //- script(src='../static/javascripts/index.js' async)
+    //- script(src='../static/javascripts/rasp.js' async)
+    script(src='../static/javascripts/cart.js' defer="defer" async)
+
+block style
+    style
+        include ../static/stylesheets/style.css
+        include ../static/stylesheets/styleResponsive.css
+
+block content
+    div.cart-modal        
+        div#cart-item.cart-items 
+            if(data1!='')  
+                h1 My Products For Sale  
+                    each n,i in data1  
+                        div.cart-row 
+                            a(href='/api/image/'+data1[i].current_id) 
+                                img(src='/static/images/'+data1[i].image,class="product-image-img")      
+                            div(class="button-item")           
+                                button(class="remove" ,onclick="return checkSell('"+data1[i].current_id+"')") Remove  
+           
+            if(data2!='') 
+                h1 My Products For Donation  
+                    each n,i in data2  
+                        div.cart-row 
+                            a(href='/api/image/'+data2[i].current_id) 
+                                img(src='/static/images/'+data2[i].image,class="product-image-img")     
+                            div(class="button-item")           
+                                button(class="remove" ,onclick="return checkDonate('"+data2[i].current_id+"')") Remove  
+            if(data1=='')
+                if(data2=='')
+                    h1 You dont have any items for sell
+    script. 
+        function checkDonate(a){
+        var i=parseInt(a);
+        window.location.href='/api/delete/product/donate/'+i;
+        }
+        function checkSell(a){
+        var i=parseInt(a);
+        window.location.href='/api/delete/product/sell/'+i;
+        }   

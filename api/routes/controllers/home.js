@@ -150,19 +150,39 @@ module.exports.Cancel = (req, res) => {
   });
 };
 
+module.exports.myItems = (req, res) => {
+  var id = req.params.id;
+  var sql = "SELECT `image`,`current_id` FROM `sell_table`WHERE `user_id`='"+id+"'";
+  db.query(sql, function (err, result1) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      var sql1="SELECT `image`,`current_id` FROM `donate_table`WHERE `user_id`='"+id+"'";
+      db.query(sql1, function (err, result2) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          res.render('myitems.pug',{data1:result1,data2:result2});
+        }
+      });
+    }
+  });
+};
+
 module.exports.Profile_get = (req, res) => {
   var id = req.params.id;
   var sql1 = "SELECT * FROM `user_sell_products` WHERE `user_id`='" + id + "'";
   var result1;
   db.query(sql1, function (err, result) {
     if (result.length <= 0) {
-       result1='';
+      result1 = '';
     }
-    else{
-       result1=result;
+    else {
+      result1 = result;
     }
   });
-
   var sql = "SELECT * FROM `customers` WHERE `user_id`='" + id + "'";
   db.query(sql, function (err, result) {
     if (result.length <= 0) {
@@ -172,11 +192,11 @@ module.exports.Profile_get = (req, res) => {
           console.log(err);
         }
         else
-          res.render('profile.pug', { data: '' ,data1:result1});
+          res.render('profile.pug', { data: '', data1: result1 });
       })
     }
     else {
-      res.render('profile.pug', { jsStringify, data: result ,data1:result1});
+      res.render('profile.pug', { jsStringify, data: result, data1: result1 });
     }
   });
 };
@@ -187,10 +207,10 @@ module.exports.edit_get = (req, res) => {
   var result1;
   db.query(sql1, function (err, result) {
     if (result.length <= 0) {
-       result1='';
+      result1 = '';
     }
-    else{
-       result1=result;
+    else {
+      result1 = result;
     }
   });
   var sql = "SELECT * FROM `customers` WHERE `user_id`='" + id + "'";
@@ -199,31 +219,20 @@ module.exports.edit_get = (req, res) => {
       console.log(err);
     }
     else {
-      res.render('profile_edit.pug', { jsStringify, data: result,data1:result1 });
+      res.render('profile_edit.pug', { jsStringify, data: result, data1: result1 });
     }
   });
 };
 
 module.exports.edit_post = (req, res) => {
   var user_id = parseInt(req.params.id);
-  console.log(user_id);
-  if (req.body.address)
-    console.log("chanchal")
   var sql = "UPDATE `customers` SET `fname`='" + req.body.fname + "',`lname`='" + req.body.lname + "',`gender`='" + req.body.gender + "',`phone`='" + req.body.phone + "',`address`='" + req.body.address + "',`state`='" + req.body.state + "',`city`='" + req.body.city + "',`pincode`='" + req.body.pcode + "',`country`='" + req.body.country + "'  WHERE `user_id`='" + user_id + "'";
   db.query(sql, function (err, result) {
     if (err) {
       console.log(err);
     }
     else {
-      var sql1 = "SELECT * FROM `customers` WHERE `user_id`='" + user_id + "'";
-      db.query(sql1, function (er, results) {
-        if (er) {
-          console.log(err);
-        }
-        else {
-          res.render('profile.pug', { jsStringify, data: results });
-        }
-      });
+      res.redirect('/api/profile/'+user_id);
     }
   });
 };
@@ -262,7 +271,7 @@ module.exports.Cart_get = (req, res) => {
   })
 };
 
-module.exports.addProduct = (req, res) => {
+module.exports.addProductCart = (req, res) => {
   const token = req.cookies.jwt;
   var id = req.params.id;
   jwt.verify(token, process.env.JWT_SECRET, function (err, decodedToken) {
@@ -282,7 +291,7 @@ module.exports.addProduct = (req, res) => {
   })
 };
 
-module.exports.delProduct = (req, res) => {
+module.exports.delProductCart = (req, res) => {
   const token = req.cookies.jwt;
   var id = req.params.id;
   jwt.verify(token, process.env.JWT_SECRET, function (err, decodedToken) {
@@ -301,6 +310,81 @@ module.exports.delProduct = (req, res) => {
     }
   })
 };
+
+module.exports.delProductDonate = (req, res) => {
+  var id = req.params.id;
+  const token = req.cookies.jwt;
+  var user_id;
+  jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
+    if (err) {
+      console.log(err);
+    } else {
+      var sql = "delete from `donate_table` WHERE `current_id`='" + id + "'";
+      db.query(sql, function (err, results, fields) {
+        if (err) {
+          console.log(err);
+        } else {
+          var sql1 = "SELECT * from `user_sell_products` WHERE `user_id`='" + decodedToken.id + "'";
+          db.query(sql1, function (err, result1, fields) {
+            if (err) {
+              console.log(err);
+            }
+            else {
+              var val = parseInt(result1[0].sell) - 1;
+              var sql2 = "UPDATE `user_sell_products` SET `donate`='" + val + "' WHERE `user_id`='" + decodedToken.id + "'";
+              db.query(sql2, function (err, result2) {
+                if (err) {
+                  console.log(err);
+                }
+                else{
+                  res.redirect('/api/');
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  });
+};
+
+module.exports.delProductSell = (req, res) => {
+  var id = req.params.id;
+  const token = req.cookies.jwt;
+  var user_id;
+  jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
+    if (err) {
+      console.log(err);
+    } else {
+      var sql = "delete from `sell_table` WHERE `current_id`='" + id + "'";
+      db.query(sql, function (err, results, fields) {
+        if (err) {
+          console.log(err);
+        } else {
+          var sql1 = "SELECT * from `user_sell_products` WHERE `user_id`='" + decodedToken.id + "'";
+          db.query(sql1, function (err, result1, fields) {
+            if (err) {
+              console.log(err);
+            }
+            else {
+              var val = parseInt(result1[0].sell) - 1;
+              var sql2 = "UPDATE `user_sell_products` SET `sell`='" + val + "' WHERE `user_id`='" + decodedToken.id + "'";
+              db.query(sql2, function (err, result2) {
+                if (err) {
+                  console.log(err);
+                }else{
+                  res.redirect('/api/');
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  });
+};
+
+
 
 
 

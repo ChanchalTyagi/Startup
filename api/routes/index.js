@@ -1,7 +1,7 @@
 var express=require("express");
-const route = express.Router()
+const route = express.Router();
 var {sign_post,login_get,email_activate_get,forgot_password_get,forgot_password_post,reset_password_get,reset_password_post,login_post,logout_get}=require("./controllers/register.js");
-var {home,Search,Cooler,Cycle,Iron,Books,Kettle,Image,Cancel,Profile_get,edit_post,edit_get,Cart_get,addProduct,delProduct}=require("./controllers/home.js");
+var {home,Search,Cooler,Cycle,Iron,Books,Kettle,Image,Cancel,myItems,Profile_get,edit_post,edit_get,Cart_get,addProductCart,delProductCart,delProductDonate,delProductSell}=require("./controllers/home.js");
 var {Sell_post,donate_post,donate_get,Sell_get,contact_get,contact_post}=require("./controllers/upload.js");
 const { router } = require("websocket");
 var {requireAuth,checkUser}=require('./middleware/auth');
@@ -15,6 +15,7 @@ route.get("/kettle",Kettle);
 route.get("/books",Books);
 route.get("/iron",Iron);
 route.get('/profile/:id',Profile_get);
+route.get('/myitems/:id',myItems);
 route.get('/edit/:id',edit_get);
 route.post('/edit/:id',edit_post);
 route.get("/sell",requireAuth,Sell_get);
@@ -26,8 +27,10 @@ route.get("/contact",requireAuth,contact_get);
 route.post("/contact",contact_post);
 route.get("/image/:id",requireAuth,Image);
 route.get("/cancel/:id",requireAuth,Cancel);
-route.get("/add/product/:id",requireAuth,addProduct);
-route.get("/delete/product/:id",requireAuth,delProduct);
+route.get("/add/product/cart/:id",requireAuth,addProductCart);
+route.get("/delete/product/cart/:id",requireAuth,delProductCart);
+route.get("/delete/product/donate/:id",requireAuth,delProductDonate);
+route.get("/delete/product/sell/:id",requireAuth,delProductSell);
 route.get('/login',login_get);
 route.post("/signup",sign_post);
 route.get('/reset-password',reset_password_get)

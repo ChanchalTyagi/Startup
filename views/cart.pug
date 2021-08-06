@@ -2,7 +2,7 @@ extends base.pug
 block scripts
     //- script(src='../static/javascripts/index.js' async)
     //- script(src='../static/javascripts/rasp.js' async)
-    script(src='../static/javascripts/cart.js' defer="defer" async)
+    script(src='/static/javascripts/cart.js' defer="defer" async)
 
 block style
     style
@@ -19,7 +19,7 @@ block content
                         a(href='/api/image/'+data[i].current_id) 
                             img(src='/static/images/'+data[i].image,class="product-image-img")     
                         div(class="cart-price")   
-                        h1 #{data[i].price}       
+                            h1 #{data[i].price}       
                         div(class="button-item")           
                             button(class="remove" ,onclick="return check('"+data[i].current_id+"')") Remove  
             else 
@@ -27,5 +27,5 @@ block content
     script. 
         function check(a){
         var i=parseInt(a);
-        window.location.href='/api/delete/product/'+i;
+        window.location.href='/api/delete/product/cart/'+i;
         }   

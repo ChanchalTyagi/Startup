@@ -36,14 +36,6 @@ module.exports.Sell_post = function (req, res, next) {
     var currentId = Date.now();
     const token = req.cookies.jwt;
     var user_id;
-    for (var i = 0; i < req.files.length; i++) {
-      var img_name = imageArray[i];
-      var sql = "INSERT INTO `sell_table`(`name`,`product`,`mob_no`,`price`, `old` ,`image`,`year`,`descript`,`currentdate`,`current_id`) VALUES ('" + name + "','" + product + "','" + mob + "','" + price + "','" + old + "','" + img_name + "','" + year + "','" + descript + "',now(),'" + currentId + "')";
-      db.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log("1 record inserted, ID: " + result.insertId);
-      })
-    }
     jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
       if (err) {
         console.log(err);
@@ -56,6 +48,14 @@ module.exports.Sell_post = function (req, res, next) {
             let ans = JSON.parse(JSON.stringify(results));
             user_id = ans[0].id;
             console.log(user_id)
+            for (var i = 0; i < req.files.length; i++) {
+              var img_name = imageArray[i];
+              var sql = "INSERT INTO `sell_table`(`name`,`product`,`mob_no`,`price`, `old` ,`image`,`year`,`descript`,`currentdate`,`current_id`) VALUES ('" + name + "','" + product + "','" + mob + "','" + price + "','" + old + "','" + img_name + "','" + year + "','" + descript + "',now(),'" + currentId + "')";
+              db.query(sql, function (err, result) {
+                if (err) throw err;
+                console.log("1 record inserted, ID: " + result.insertId);
+              })
+            }
             var sql1 = "SELECT * FROM `user_sell_products` WHERE `user_id`='" + user_id + "'";
             db.query(sql1, function (err, result1) {
               if (err)
@@ -103,14 +103,7 @@ module.exports.donate_post = function (req, res, next) {
     var currentId = Date.now();
     const token = req.cookies.jwt;
     var user_id;
-    for (var i = 0; i < req.files.length; i++) {
-      var img_name = imageArray[i];
-      var sql = "INSERT INTO `donate_table`(`name`,`product`,`mob_no`,`old` ,`image`,`year`,`descript`,`current_date`,`current_id`) VALUES ('" + name + "','" + product + "','" + mob + "','" + old + "','" + img_name + "','" + year + "','" + descript + "',now(),'" + currentId + "')";
-      db.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log("1 record inserted, ID: " + result.insertId);
-      })
-    }
+    
     jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
       if (err) {
         console.log(err);
@@ -121,8 +114,16 @@ module.exports.donate_post = function (req, res, next) {
           }
           else {
             let ans = JSON.parse(JSON.stringify(results));
-            user_id = ans[0].id;
+            user_id = parseInt(ans[0].id);
             console.log(user_id)
+            for (var i = 0; i < req.files.length; i++) {
+              var img_name = imageArray[i];
+              var sql = "INSERT INTO `donate_table`(`name`,`product`,`mob_no`,`old` ,`image`,`year`,`descript`,`current_date`,`current_id`,`user_id`) VALUES ('" + name + "','" + product + "','" + mob + "','" + old + "','" + img_name + "','" + year + "','" + descript + "',now(),'" + currentId + "','"+user_id+"')";
+              db.query(sql, function (err, result) {
+                if (err) throw err;
+                console.log("1 record inserted, ID: " + result.insertId);
+              })
+            }
             var sql1 = "SELECT * FROM `user_sell_products` WHERE `user_id`='" + user_id + "'";
             db.query(sql1, function (err, result1) {
               if (err)

@@ -101,7 +101,6 @@
     
     function ready() {
       var cartItems = document.querySelector('#cart-item');
-      
       if(cartItems)
       {
         var cartRow = document.querySelector('.cart-row');
