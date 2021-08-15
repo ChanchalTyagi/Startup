@@ -94,7 +94,7 @@ module.exports.Iron = (req, res) => {
 
 module.exports.Books = (req, res) => {
   var name = `books`;
-  var sql = "SELECT * FROM `sell_table` WHERE `product`='" + name + "' ORDER BY `price` ASC";
+  var sql = "SELECT * FROM `sell_table` WHERE `product`='"+ name +"' ORDER BY `price` ASC";
   db.query(sql, function (err, result) {
     if (err) throw err;
     if (result.length <= 0)
