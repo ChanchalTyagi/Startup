@@ -5,8 +5,9 @@ if (document.readyState == 'loading') {
 }
 
 function ready() {
-    if (localStorage.getItem('cartNumbers') === null) {
+    if (localStorage.getItem('cartNumbers') === undefined) {
        localStorage.setItem('cartNumbers',0);
     }
 }
+
 

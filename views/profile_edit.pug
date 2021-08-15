@@ -3,6 +3,7 @@ block scripts
     //- script(src='../static/javascripts/index.js')
     script(src='/static/javascripts/cart.js' defer="defer" async)
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script(src='../static/javascripts/localItem.js' defer="defer" async)
 block style
     style
         include ../static/stylesheets/style.css
@@ -29,7 +30,7 @@ block content
                     h2 You dont have any items for sell and donation
         div.table 
             form(action="/api/edit/"+data[0].user_id,method="post",id="myForm")
-                h1 Personal information 
+                
                 div.personal-info 
                     h2 Personal Information
                     input(type="text", class="myInput", name="fname", placeholder="First Name" required)

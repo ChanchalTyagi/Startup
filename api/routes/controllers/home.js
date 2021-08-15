@@ -192,7 +192,7 @@ module.exports.Profile_get = (req, res) => {
           console.log(err);
         }
         else
-          res.render('profile.pug', { data: '', data1: result1 });
+          res.render('profile.pug', { data: results, data1: result1 });
       })
     }
     else {
