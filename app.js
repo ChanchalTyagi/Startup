@@ -10,7 +10,7 @@ const bodyParser = require("body-parser");
 const jsStringify = require('js-stringify');  
 const webpush=require("web-push");      
 var cors=require('cors');                        
-const port = process.env.PORT || 8000; 
+const port = 8000; 
 var routes=require("./api/routes/index.js"); 
 var db=require("./api/routes/controllers/model.js");  
 app.set('views', path.join(__dirname, 'views'));   
