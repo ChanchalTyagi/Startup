@@ -11,8 +11,8 @@ var db=require("./model.js");
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'chanchaltyagi3727',
-    pass: 'karmayoga'
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD
   }
 });
 

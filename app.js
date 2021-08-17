@@ -3,7 +3,6 @@ var path = require("path");
 var http = require("http");
 const dotenv=require('dotenv');
 let alert = require('alert'); 
-// alert("message")
 dotenv.config({path:'./api/routes/controllers/.env'});
 const cookieParser=require('cookie-parser');       
 const app = express();
@@ -11,7 +10,7 @@ const bodyParser = require("body-parser");
 const jsStringify = require('js-stringify');  
 const webpush=require("web-push");      
 var cors=require('cors');                        
-const port = 8000; 
+const port = process.env.PORT || 8000; 
 var routes=require("./api/routes/index.js"); 
 var db=require("./api/routes/controllers/model.js");  
 app.set('views', path.join(__dirname, 'views'));   
